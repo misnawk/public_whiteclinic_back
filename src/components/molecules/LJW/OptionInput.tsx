@@ -1,5 +1,5 @@
 import InputComponent from '@/components/atom/CInput';
-import { InputPropses } from '@/constants/definition';
+import { InputProps } from '@/constants/definition';
 import { Typography } from '@mui/material';
 
 //옵션이름+input으로 이루어진 컴포넌트
@@ -8,7 +8,7 @@ import { Typography } from '@mui/material';
 
 type OptionInputProps = {
   optionTitle: string;
-  inputprops: InputPropses;
+  inputprops: InputProps;
 };
 const OptionInput = ({ optionTitle, inputprops }: OptionInputProps) => {
   return (
