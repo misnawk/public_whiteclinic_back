@@ -16,28 +16,21 @@ const PersonName = [
   '김김김',
   '강강강',
   'ㅇㅇㅇ',
+  '김김김',
+  '강강강',
+  '김김김',
+  '강강강',
 ];
 
 export const NameCheckboxs = () => (
   <Box
     sx={{
       display: 'flex',
-      border: '1px solid black',
-      backgroundColor: 'gray',
+      backgroundColor: '#e0e0e0',
       width: '100%',
-      // borderRadius: '10px',
+      borderRadius: '10px',
       overflowX: 'scroll',
       overflowY: 'hidden',
-      '&::-webkit-scrollbar': {
-        height: '4px',
-      },
-      '&::-webkit-scrollbar-thumb': {
-        backgroundColor: 'darkgray',
-        borderRadius: '2px',
-      },
-      '&::-webkit-scrollbar-track': {
-        backgroundColor: 'lightgray',
-      },
       scrollbarWidth: 'thin',
       scrollbarColor: 'darkgray lightgray',
     }}
@@ -46,7 +39,6 @@ export const NameCheckboxs = () => (
       sx={{
         display: 'flex',
         flexWrap: 'nowrap',
-        // padding: '10px',
       }}
     >
       {PersonName.map((name) => (
