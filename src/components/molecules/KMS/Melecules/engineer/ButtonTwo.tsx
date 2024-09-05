@@ -16,7 +16,7 @@ export type ButtonTwoModalProps = {
 };
 
 export const ButtonTwo = ({
-  leftButton, //
+  leftButton,
   rightButton,
   leftColor,
   rightColor,
