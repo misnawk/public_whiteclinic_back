@@ -30,7 +30,7 @@ export const CModal = ({ open = false, title, children }: modalProps) => {
   return (
     <Modal
       open={open}
-      onClose={close}
+      // onClose={close}
       aria-labelledby="parent-modal-title"
       aria-describedby="parent-modal-description"
     >
