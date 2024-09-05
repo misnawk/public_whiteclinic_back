@@ -74,12 +74,18 @@ const SalesInfoFrame = () => {
       CCheckbox({
         label: '종합세척',
         isChecked: isComposite,
-        handleChange: () => toggleComposite((state) => !state),
+        handleChange: () => {
+          toggleComposite((state) => !state);
+          setSalesData((prevState) => ({ ...prevState, isComposite: isComposite }));
+        },
       }),
       CCheckbox({
         label: '일반세척',
         isChecked: isRegular,
-        handleChange: () => toggleRegular((state) => !state),
+        handleChange: () => {
+          toggleRegular((state) => !state);
+          setSalesData((prevState) => ({ ...prevState, isRegular: isRegular }));
+        },
       })
     ),
     writeInfoTable(
@@ -87,7 +93,10 @@ const SalesInfoFrame = () => {
       CCheckbox({
         label: '할인적용',
         isChecked: isDiscounted,
-        handleChange: () => toggleDiscounted((state) => !state),
+        handleChange: () => {
+          toggleDiscounted((state) => !state);
+          setSalesData((prevState) => ({ ...prevState, isDiscounted: isDiscounted }));
+        },
       }),
       CInput({
         labelProp: '할인율',
