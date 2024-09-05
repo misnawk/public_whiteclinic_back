@@ -34,7 +34,6 @@ const OrderInfoTableFrame = () => {
 
   const orderInfoChangeHandler = (key: string, value: orderInfoValue) => {
     setorderData((prevState) => ({ ...prevState, [key]: value }));
-    console.log(orderData);
   };
 
   /**
