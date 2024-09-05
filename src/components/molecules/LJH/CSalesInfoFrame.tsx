@@ -10,42 +10,44 @@ import { writeInfoTable } from '@/util/actionUtil';
 import { Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
 import { useEffect, useState } from 'react';
 
-/**
- * @returns 매출정보 입력 테이블 컴포넌트
- */
 const SalesInfoFrame = () => {
-  const [isComposite, toggleComposite] = useState(false);
-  const [isRegular, toggleRegular] = useState(false);
-  const [isDiscounted, toggleDiscounted] = useState(false);
   const [salesData, setSalesData] = useState<SalesInfoModel>({
     item: '',
     writtenItem: '',
     itemQuantity: 0,
-    isComposite: isComposite,
-    isRegular: isRegular,
-    isDiscounted: isDiscounted,
+    isComposite: false,
+    isRegular: false,
+    isDiscounted: false,
     isModifiable: false,
     discountRatio: '',
     totalPrice: 0,
     comments: '',
   });
 
-  // 드롭다운 아이템 선택 시 수기입력칸 비활성화를 위한 boolean 상태변수
   const isItemSelected = !!salesData.item && salesData.item !== '선택';
 
-  // 입력값 setStateAction 으로 최신화 하는 함수
-  const salesInfoChangeHandler = (key: string, value: salesInfoValue | null) => {
-    if (!!value) {
+  // 체크박스 상태 관리 변수
+  const handleCheckboxChange = (type: 'isComposite' | 'isRegular' | 'isDiscounted') => {
+    setSalesData((prevState) => {
+      const newState = { ...prevState };
+      if (type === 'isComposite' || type === 'isRegular') {
+        newState.isComposite = type === 'isComposite' ? !prevState.isComposite : false;
+        newState.isRegular = type === 'isRegular' ? !prevState.isRegular : false;
+      } else {
+        newState[type] = !prevState[type];
+      }
+      return newState;
+    });
+  };
+
+  const salesInfoChangeHandler = (key: keyof SalesInfoModel, value: salesInfoValue | null) => {
+    if (value !== null) {
       setSalesData((prevState) => ({ ...prevState, [key]: value }));
-      console.log('key : ' + key);
-      console.log('value : ' + value);
     }
   };
 
   useEffect(() => {
-    console.log('isComposite State: ' + isComposite);
-    console.log('isRegular State: ' + isRegular);
-    console.log('isDiscounted State: ' + isDiscounted);
+    console.log({ ...salesData });
   }, [salesData]);
 
   const salesInfoTableRows = [
@@ -73,35 +75,26 @@ const SalesInfoFrame = () => {
       '세척방식',
       CCheckbox({
         label: '종합세척',
-        isChecked: isComposite,
-        handleChange: () => {
-          toggleComposite((state) => !state);
-          setSalesData((prevState) => ({ ...prevState, isComposite: isComposite }));
-        },
+        isChecked: salesData.isComposite,
+        handleChange: () => handleCheckboxChange('isComposite'),
       }),
       CCheckbox({
         label: '일반세척',
-        isChecked: isRegular,
-        handleChange: () => {
-          toggleRegular((state) => !state);
-          setSalesData((prevState) => ({ ...prevState, isRegular: isRegular }));
-        },
+        isChecked: salesData.isRegular,
+        handleChange: () => handleCheckboxChange('isRegular'),
       })
     ),
     writeInfoTable(
       '할인여부',
       CCheckbox({
         label: '할인적용',
-        isChecked: isDiscounted,
-        handleChange: () => {
-          toggleDiscounted((state) => !state);
-          setSalesData((prevState) => ({ ...prevState, isDiscounted: isDiscounted }));
-        },
+        isChecked: salesData.isDiscounted,
+        handleChange: () => handleCheckboxChange('isDiscounted'),
       }),
       CInput({
         labelProp: '할인율',
         placeholderProp: '할인율을 입력하세요',
-        isDisabled: !isDiscounted,
+        isDisabled: !salesData.isDiscounted,
         type: 'text',
         handleInput: (event) => salesInfoChangeHandler('discountRatio', event.target.value),
       })
@@ -111,9 +104,7 @@ const SalesInfoFrame = () => {
       CInput({
         isModifiable: true,
         type: 'number',
-        modifyInput: () => {
-          setSalesData((prevState) => ({ ...prevState, isModifiable: !salesData.isModifiable }));
-        },
+        modifyInput: () => salesInfoChangeHandler('isModifiable', !salesData.isModifiable),
         placeholderProp: '할인 금액 출력',
         variableValue: salesData.totalPrice,
         adornment: '원',

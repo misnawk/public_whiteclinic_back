@@ -60,6 +60,7 @@ export type orderInfoValue = string | boolean;
 
 export type CheckboxProps<T extends allType | engineerName> = {
   label: T;
+  name?: string;
   engineerName?: engineerName;
   isChecked?: boolean;
   handleChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;

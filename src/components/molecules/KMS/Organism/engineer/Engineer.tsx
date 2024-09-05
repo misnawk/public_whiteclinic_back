@@ -1,7 +1,6 @@
 import CCheckbox from '@/components/atom/CCheckbox';
 import CInput from '@/components/atom/CInput';
 import { skill, skillArr } from '@/constants/definition';
-import { CheckBox } from '@mui/icons-material';
 import { Paper, Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
 import { ButtonTwo } from '../../Melecules/engineer/ButtonTwo';
 
