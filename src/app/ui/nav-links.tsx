@@ -22,7 +22,7 @@ const menuItems = [
         href: '/engineer/e_list',
         icon: FormatListBulletedIcon,
       },
-      { name: '등록하기', href: '/engineer/e_register', icon: PlaylistAddIcon },
+      { name: '등록하기', href: '/engineer/e_registration', icon: PlaylistAddIcon },
       { name: '수정하기', href: '/engineer/e_modify', icon: SettingsIcon },
     ],
   },
