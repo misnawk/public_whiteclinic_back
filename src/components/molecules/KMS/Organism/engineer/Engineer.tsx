@@ -18,13 +18,15 @@ const createData = (
   return { row, first, second };
 };
 
-export const SkillCheckBoxs = () => (
-  <>
-    {skillArr.map((skill) => (
-      <CCheckbox<skill> key={skill} label={skill} isChecked={false} />
-    ))}
-  </>
-);
+export const SkillCheckBoxs = () => {
+  return (
+    <>
+      {skillArr.map((skill) => (
+        <CCheckbox<skill> key={skill} label={skill} isChecked={false} />
+      ))}
+    </>
+  );
+};
 
 // 엔지니어 상태 객체로 관리
 export type EngineerInfoModel = {
