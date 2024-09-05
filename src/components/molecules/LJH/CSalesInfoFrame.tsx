@@ -36,6 +36,7 @@ const SalesInfoFrame = () => {
       } else {
         newState[type] = !prevState[type];
       }
+        
       return newState;
     });
   };
