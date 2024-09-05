@@ -55,17 +55,15 @@ export const Salary = () => {
         rightButton="등록"
         onRightButton={openModal}
       />
-      <CModal
-        title="해당 내용으로 급여사항을 등록하겠습니까?"
-        open={Modal}
-        children={ButtonTwo({
+      <CModal title="해당 내용으로 급여사항을 등록하겠습니까?" open={Modal}>
+        {ButtonTwo({
           leftButton: '아니오',
           onLeftButton: closeModal,
           leftBgColor: 'gray',
           leftColor: 'black',
           rightButton: '등록',
         })}
-      />
+      </CModal>
     </div>
   );
 };
