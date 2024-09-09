@@ -88,11 +88,18 @@ export const calculateComplexPrice = (salesData: SalesInfoModel): number | undef
     salesData.isComposite
       ? (finalPrice = calculatePrice(salesData, compositePrice))
       : (finalPrice = calculatePrice(salesData, regularPrice));
+
+    return finalPrice;
+  } else if (productInfo && 'compositePrice' in productInfo && !('regularPrice' in productInfo)) {
+    const { compositePrice } = productInfo;
+    finalPrice = compositePrice;
+
     return finalPrice;
   }
   // 고정단가
   else if (productInfo && 'defaultPrice' in productInfo) {
     const { defaultPrice } = productInfo;
+
     return defaultPrice;
   }
   // 소 / 중 / 대 세탁기
