@@ -59,14 +59,7 @@ const SalesInfoFrame = () => {
     if (totalPrice !== salesData.totalPrice) {
       amountTotalPrice(totalPrice);
     }
-  }, [
-    salesData.discountRatio,
-    salesData.isComposite,
-    salesData.isDiscounted,
-    salesData.isRegular,
-    salesData.item,
-    salesData.itemQuantity,
-  ]);
+  }, [{ ...salesData }]);
 
   const salesInfoTableRows = [
     writeInfoTable(
