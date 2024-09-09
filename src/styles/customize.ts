@@ -121,7 +121,7 @@ export const hideNumberInputArrows = {
   },
 };
 
-export const StyledScheduleTable = { display: 'flex', gap: '6px' };
+export const StyledScheduleTable = { display: 'flex', gap: '10px' };
 export const StyledScheduleTimeline = { display: 'flex', flexDirection: 'column', gap: '6px' };
 export const StyledTimeSlot = {
   display: 'flex',
@@ -148,8 +148,8 @@ export const StyledTimeContent = {
   textAlign: 'center',
 };
 
-export const StyledCustomerInfo: CSSProperties = {
-  height: '20px',
+export const StyledCustomerInfo = {
+  height: '30px',
   padding: '3px',
   textAlign: 'center',
 };
@@ -177,4 +177,18 @@ export const StyledButtonContainer: CSSProperties = {
   gap: 3,
   padding: 3,
   justifyContent: 'center',
+};
+
+//CModal의 스타일을 정의해놓음
+export const CModalStyle = {
+  position: 'absolute' as 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 490,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+  gap: '20px',
 };
