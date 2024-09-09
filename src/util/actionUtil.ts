@@ -105,6 +105,10 @@ export const calculateComplexPrice = (salesData: SalesInfoModel): number | undef
   else if (productInfo && 'smallPrice' in productInfo) {
     const { smallPrice, mediumPrice, largePrice, builtInPrice } = productInfo;
     console.log('소 / 중 / 대 구분할 지표나 상태변수가 필요함...');
+    console.log('소형 가격 : ' + smallPrice);
+    console.log('중형 가격 : ' + mediumPrice);
+    console.log('대형 가격 : ' + largePrice);
+    console.log('빌트인 가격 : ' + builtInPrice);
     return 0;
   }
 
