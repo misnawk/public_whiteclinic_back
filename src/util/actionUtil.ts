@@ -99,8 +99,8 @@ export const calculateComplexPrice = (salesData: SalesInfoModel): number | undef
   // 고정단가
   else if (productInfo && 'defaultPrice' in productInfo) {
     const { defaultPrice } = productInfo;
-
-    return defaultPrice;
+    let defaultProduct = calculatePrice(salesData, defaultPrice);
+    return defaultProduct;
   }
   // 소 / 중 / 대 세탁기
   else if (productInfo && 'smallPrice' in productInfo) {
