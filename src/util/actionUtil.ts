@@ -92,8 +92,7 @@ export const calculateComplexPrice = (salesData: SalesInfoModel): number | undef
     return finalPrice;
   } else if (productInfo && 'compositePrice' in productInfo && !('regularPrice' in productInfo)) {
     const { compositePrice } = productInfo;
-    finalPrice = compositePrice;
-
+    finalPrice = calculatePrice(salesData, compositePrice);
     return finalPrice;
   }
   // 고정단가
