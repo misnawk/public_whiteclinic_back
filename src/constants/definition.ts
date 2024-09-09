@@ -3,7 +3,14 @@ import { SelectChangeEvent } from '@mui/material';
 import dayjs, { Dayjs } from 'dayjs';
 import { ComponentProps, FocusEvent, KeyboardEvent, PointerEvent } from 'react';
 
-export type ButtonContent = '취소' | '등록' | '등록중지' | '추가등록' | '아니오' | '급여사항확인';
+export type ButtonContent =
+  | '취소'
+  | '등록'
+  | '등록중지'
+  | '추가등록'
+  | '아니오'
+  | '급여사항확인'
+  | '휴무등록';
 type btnType = 'button' | 'submit' | 'reset';
 type fontSizeProps = keyof typeof sizes.fontSize;
 type fontWeightProps = keyof typeof sizes.fontWeight;
@@ -20,9 +27,7 @@ export type ButtonProps = {
 };
 
 export type state = '발행완료' | '지급완료' | '휴무추가';
-
 export type revenue = '종합세척' | '일반세척' | '할인적용';
-
 export type engineerName = string;
 
 export type skill =
@@ -60,10 +65,11 @@ export type orderInfoValue = string | boolean;
 
 export type CheckboxProps<T extends allType | engineerName> = {
   label: T;
-  name?: string;
   engineerName?: engineerName;
   isChecked?: boolean;
+  width?: string;
   handleChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  isAnyChecked?: boolean;
 };
 
 export type ProductDropdownList = {
@@ -97,6 +103,31 @@ export const CleaningItem: ProductDropdownList[] = [
   { label: '일반 실외기' },
   { label: '대형 실외기' },
 ];
+
+export type builtInProductType = '드럼';
+export type defaultPriceProduct =
+  | '건조기'
+  | '트윈워시'
+  | '드럼형 아기사랑 세탁기'
+  | '통돌이형 아기사랑 세탁기';
+export type onlyCompositeProduct =
+  | '원형 360 에어컨'
+  | '파세코 창문형 에어컨'
+  | '사각 덕트'
+  | '원형 덕트'
+  | '메인 덕트'
+  | '일반실외기'
+  | '대형실외기';
+export type regularProduct = '벽걸이' | '원웨이' | '포웨이';
+export type rangedPriceProduct = '스탠드' | '투인원';
+
+export type productLabelTypes =
+  | builtInProductType
+  | regularProduct
+  | defaultPriceProduct
+  | onlyCompositeProduct
+  | rangedPriceProduct;
+
 export const paymentOptions: ProductDropdownList[] = [
   { label: '계좌이체' },
   { label: '카드결제' },
@@ -143,6 +174,10 @@ type LabelType =
   | '연도'
   | '수당'
   | '수당 합계'
+  | '제품명 직접입력'
+  | '기사 성함'
+  | '기사 연락처'
+  | '기사 주소지'
   | '제품명 입력';
 
 type HelperTextType =
@@ -165,8 +200,8 @@ type InputPlaceholderType =
   | '할인 금액 출력'
   | '수량'
   | '분류 불가능한 세척품목'
-  | '연도 입력';
-
+  | '연도 입력'
+  | '제품명 직접입력';
 // 인풋 프롭 타입지정
 export type InputProps = {
   inputID?: string;
@@ -176,7 +211,7 @@ export type InputProps = {
   modifyInput?: () => void;
   minValue?: number;
   maxValue?: number;
-  adornment?: '원';
+  adornment?: '원' | '%' | '';
   type?: 'number' | 'text';
   color?: object;
   isReadOnly?: boolean;
@@ -212,10 +247,11 @@ export type CustomerInfo = {
   customerAddress: string;
   cleaningItem: string;
   cleaningType: string;
-  modelEA: number;
+  itemQuantity: number;
   totalPrice: number;
   appointmentDate: string;
   appointmentTime: string;
+  assignedEngineer: string;
 };
 
 export type CustomerInfoProps = {
@@ -230,7 +266,7 @@ export const workTimeLine: ProductDropdownList[] = [
   { label: '11시 ~ 12시' },
   { label: '12시 ~ 13시' },
   { label: '13시 ~ 14시' },
-  { label: '14시~  15시' },
+  { label: '14시 ~ 15시' },
   { label: '15시 ~ 16시' },
   { label: '16시 ~ 17시' },
   { label: '17시 ~ 18시' },
@@ -333,3 +369,85 @@ export const salesTableTexts: ProductDropdownList[] = [
   { label: '세척금액' },
   { label: '특이사항' },
 ];
+
+//버튼 모달의 제목으로 들어가는 타입정의
+export type ButtoModalTextType =
+  | '해당 내용으로 기사정보를 등록하시겠습니까?'
+  | '해당 내용으로 급여사항을 등록하겠습니까?';
+
+//C모달에 들어가는 프롭스정의
+export type modalProps = {
+  open: boolean;
+  title: ButtoModalTextType;
+  children: JSX.Element;
+};
+
+//버튼TWo에 들어가는 프롭스정의
+export type ButtonTwoModalProps = {
+  leftButton: ButtonContent;
+  rightButton: ButtonContent;
+  leftColor?: string;
+  rightColor?: string;
+  leftBgColor?: string;
+  rightBgBolor?: string;
+  onLeftButton?: () => void;
+  onRightButton?: () => void;
+  modalText?: ButtoModalTextType;
+};
+
+// engineer컴포넌트 상태들을 객체로 관리
+export type EngineerInfoModel = {
+  name: string;
+  number: string;
+  address: string;
+  addskill: string;
+  issue: string;
+};
+
+//engineer컴포넌트의 테이블 타입정의
+export type EngineerTableType = '기사성함' | '연락처' | '거주지역' | '가능품목' | '특이사항';
+
+//engineer컴포넌트의 테이블의 함수정의
+export const engineerCreateData = (
+  row: EngineerTableType, //
+  first: JSX.Element, //
+  second?: JSX.Element,
+  thrid?: string
+) => {
+  return { row, first, second, thrid };
+};
+
+//LeftInfoComponent컴포넌트의 테이블의 행의 타입 정의 및 사용
+export type leftinfo = '연락처' | '거주지' | '가능품목' | '특이사항';
+export const leftinfo: leftinfo[] = ['연락처', '거주지', '가능품목', '특이사항'];
+
+//RightInfoComponent컴포넌트의 상태들을 객체로 관리
+export type rightModel = {
+  regularDay: string;
+  irregularDay: string;
+  regularCheckBox: boolean;
+  irregularCheckBox: boolean;
+};
+
+//Salary컴포넌트의 테이블행의 타입을 정의
+export type SalaryType = '기사성함' | '수당률' | '급여요일';
+
+//Salary컴포넌트의 테이블의 함수정의
+export const SalaryCreateData = (rows: SalaryType, first: JSX.Element) => {
+  return { rows, first };
+};
+
+// 엔지니어 인포페이지 급여사항상세 페이지 정의(왼쪽)
+export const LeftInfoData = (row: string[], first: string[]) => {
+  return { row, first };
+};
+
+// 엔지니어 인포페이지 급여사항상세 페이지 정의(오른쪽)
+export const RightInfoData = (row: RightInfoType['row'][], first: string[]) => {
+  return { row, first };
+};
+
+// 엔지니어 인포페이지 급여사항상세 페이지 정의(오른쪽)
+export type RightInfoType = {
+  row: '합계수당' | '수당률' | '수당금액' | '지급요일' | '지급여부';
+};

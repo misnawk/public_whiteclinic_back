@@ -2,11 +2,9 @@ import CCheckbox from '@/components/atom/CCheckbox';
 import CDropDown from '@/components/atom/CDropdown';
 import CInput from '@/components/atom/CInput';
 import { CNumberInput } from '@/components/atom/CNumberInput';
-
 import { CleaningItem, SalesInfoModel, salesInfoValue } from '@/constants/definition';
-
 import { StyledCompTableCell, StyledTextTableCell } from '@/styles/customize';
-import { writeInfoTable } from '@/util/actionUtil';
+import { calculateComplexPrice, writeInfoTable } from '@/util/actionUtil';
 import { Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
 import { useEffect, useState } from 'react';
 
@@ -24,6 +22,7 @@ const SalesInfoFrame = () => {
     comments: '',
   });
 
+  // 제품명 수기입력 readOnly 프롭 토글용 상태변수
   const isItemSelected = !!salesData.item && salesData.item !== '선택';
 
   // 체크박스 상태 관리 변수
@@ -36,7 +35,7 @@ const SalesInfoFrame = () => {
       } else {
         newState[type] = !prevState[type];
       }
-        
+
       return newState;
     });
   };
@@ -47,9 +46,27 @@ const SalesInfoFrame = () => {
     }
   };
 
+  const amountTotalPrice = (price: number | undefined) => {
+    if (price) {
+      setSalesData((prevState) => ({ ...prevState, totalPrice: price }));
+    }
+  };
+
   useEffect(() => {
     console.log({ ...salesData });
-  }, [salesData]);
+    const totalPrice = calculateComplexPrice(salesData);
+
+    if (totalPrice !== salesData.totalPrice) {
+      amountTotalPrice(totalPrice);
+    }
+  }, [
+    salesData.discountRatio,
+    salesData.isComposite,
+    salesData.isDiscounted,
+    salesData.isRegular,
+    salesData.item,
+    salesData.itemQuantity,
+  ]);
 
   const salesInfoTableRows = [
     writeInfoTable(
