@@ -4,9 +4,10 @@ import CInput from '@/components/atom/CInput';
 import { CNumberInput } from '@/components/atom/CNumberInput';
 import { CleaningItem, SalesInfoModel, salesInfoValue } from '@/constants/definition';
 import { StyledCompTableCell, StyledTextTableCell } from '@/styles/customize';
-import { calculateComplexPrice, writeInfoTable } from '@/util/actionUtil';
+import { writeInfoTable } from '@/util/actionUtil';
+import { calculateComplexPrice } from '@/util/calculatePriceUtil';
 import { Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
 const SalesInfoFrame = () => {
   const [salesData, setSalesData] = useState<SalesInfoModel>({
@@ -26,8 +27,11 @@ const SalesInfoFrame = () => {
   const isItemSelected = !!salesData.item && salesData.item !== '선택';
 
   // 체크박스 상태 관리 변수
-  const handleCheckboxChange = (type: 'isComposite' | 'isRegular' | 'isDiscounted') => {
-    setSalesData((prevState) => {
+  const handleCheckboxChange = (
+    type: 'isComposite' | 'isRegular' | 'isDiscounted',
+    stateFn: Dispatch<SetStateAction<SalesInfoModel>>
+  ) => {
+    stateFn((prevState) => {
       const newState = { ...prevState };
       if (type === 'isComposite' || type === 'isRegular') {
         newState.isComposite = type === 'isComposite' ? !prevState.isComposite : false;
@@ -40,16 +44,18 @@ const SalesInfoFrame = () => {
     });
   };
 
-  const salesInfoChangeHandler = (key: keyof SalesInfoModel, value: salesInfoValue | null) => {
-    if (value !== null) {
-      setSalesData((prevState) => ({ ...prevState, [key]: value }));
-    }
+  const salesInfoChangeHandler = (
+    key: keyof SalesInfoModel,
+    value: salesInfoValue | null,
+    stateFn: Dispatch<SetStateAction<SalesInfoModel>>
+  ) => {
+    value && stateFn((prevState) => ({ ...prevState, [key]: value }));
+    !value && console.log('salesInfo parameter has no value');
   };
 
   const amountTotalPrice = (price: number | undefined) => {
-    if (price) {
-      setSalesData((prevState) => ({ ...prevState, totalPrice: price }));
-    }
+    price && setSalesData((prevState) => ({ ...prevState, totalPrice: price }));
+    !price && console.log('price parameter has no value');
   };
 
   useEffect(() => {
@@ -66,20 +72,21 @@ const SalesInfoFrame = () => {
       '세척품목',
       CDropDown({
         contentList: CleaningItem,
-        handleChange: (event) => salesInfoChangeHandler('item', event.target.value),
+        handleChange: (event) => salesInfoChangeHandler('item', event.target.value, setSalesData),
       }),
       CInput({
         type: 'text',
         placeholderProp: '분류 불가능한 세척품목',
         labelProp: '제품명 입력',
-        handleInput: (event) => salesInfoChangeHandler('writtenItem', event.target.value),
+        handleInput: (event) =>
+          salesInfoChangeHandler('writtenItem', event.target.value, setSalesData),
         isDisabled: isItemSelected,
       })
     ),
     writeInfoTable(
       '세척대수',
       CNumberInput({
-        handleChange: (event, value) => salesInfoChangeHandler('itemQuantity', value),
+        handleChange: (event, value) => salesInfoChangeHandler('itemQuantity', value, setSalesData),
       })
     ),
     writeInfoTable(
@@ -87,12 +94,12 @@ const SalesInfoFrame = () => {
       CCheckbox({
         label: '종합세척',
         isChecked: salesData.isComposite,
-        handleChange: () => handleCheckboxChange('isComposite'),
+        handleChange: () => handleCheckboxChange('isComposite', setSalesData),
       }),
       CCheckbox({
         label: '일반세척',
         isChecked: salesData.isRegular,
-        handleChange: () => handleCheckboxChange('isRegular'),
+        handleChange: () => handleCheckboxChange('isRegular', setSalesData),
       })
     ),
     writeInfoTable(
@@ -100,14 +107,15 @@ const SalesInfoFrame = () => {
       CCheckbox({
         label: '할인적용',
         isChecked: salesData.isDiscounted,
-        handleChange: () => handleCheckboxChange('isDiscounted'),
+        handleChange: () => handleCheckboxChange('isDiscounted', setSalesData),
       }),
       CInput({
         labelProp: '할인율',
         placeholderProp: '할인율을 입력하세요',
         isDisabled: !salesData.isDiscounted,
         type: 'text',
-        handleInput: (event) => salesInfoChangeHandler('discountRatio', event.target.value),
+        handleInput: (event) =>
+          salesInfoChangeHandler('discountRatio', event.target.value, setSalesData),
       })
     ),
     writeInfoTable(
@@ -115,7 +123,8 @@ const SalesInfoFrame = () => {
       CInput({
         isModifiable: true,
         type: 'number',
-        modifyInput: () => salesInfoChangeHandler('isModifiable', !salesData.isModifiable),
+        modifyInput: () =>
+          salesInfoChangeHandler('isModifiable', !salesData.isModifiable, setSalesData),
         placeholderProp: '할인 금액 출력',
         variableValue: salesData.totalPrice,
         adornment: '원',
@@ -127,7 +136,8 @@ const SalesInfoFrame = () => {
       CInput({
         labelProp: '특이사항',
         placeholderProp: '특이사항이 있을 시 기입하세요.',
-        handleInput: (event) => salesInfoChangeHandler('comments', event.target.value),
+        handleInput: (event) =>
+          salesInfoChangeHandler('comments', event.target.value, setSalesData),
       })
     ),
   ];
