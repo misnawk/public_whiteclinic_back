@@ -3,8 +3,8 @@ import { AppModule } from './app.module';
 import { setupSwagger } from './util/setupSwagger';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule, { bodyParser: false });
-  app.setGlobalPrefix('/orderInfo');
+  const app = await NestFactory.create(AppModule);
+
   const port = 8000;
 
   app.enableCors({ origin: true, credentials: true });
