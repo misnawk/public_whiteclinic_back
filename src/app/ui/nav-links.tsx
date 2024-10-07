@@ -61,7 +61,7 @@ const menuItems = [
     icon: TrendingUpIcon,
     links: [
       {
-        name: '일자별 매출',
+        name: 'Swagger UI',
         href: '/orderInfo/api-docs',
         icon: FormatListBulletedIcon,
       },
