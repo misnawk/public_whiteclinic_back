@@ -1,6 +1,6 @@
 import { Controller, Get } from '@nestjs/common';
 
-@Controller('server')
+@Controller()
 export class AppController {
   @Get('/')
   getHello(): string {
