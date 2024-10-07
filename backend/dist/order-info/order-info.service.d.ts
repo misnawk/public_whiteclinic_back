@@ -6,5 +6,4 @@ export declare class OrderInfoService {
     getOne(id: number): OrderData;
     create(orderInfo: SubmitOrderDto): void;
     remove(id: number): void;
-    moveTo(link: string): void;
 }

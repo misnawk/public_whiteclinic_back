@@ -36,9 +36,6 @@ let OrderInfoService = class OrderInfoService {
         this.getOne(id);
         this.orderDatas = this.orderDatas.filter((order) => order.id !== +id);
     }
-    moveTo(link) {
-        (0, common_1.Redirect)(link);
-    }
 };
 exports.OrderInfoService = OrderInfoService;
 __decorate([

@@ -5,8 +5,11 @@ export declare class OrderInfoController {
     private readonly orderService;
     constructor(orderService: OrderInfoService);
     getAll(): Promise<OrderData[]>;
-    search(searchingId: number): string;
-    getOne(orderId: number): OrderData;
-    create(orderData: SubmitOrderDto): void;
-    remove(orderId: number): void;
+    search(searchingId: number): Promise<string>;
+    getOne(orderId: number): Promise<OrderData>;
+    create(orderData: SubmitOrderDto): Promise<void>;
+    remove(orderId: number): Promise<void>;
+    toSwaggerUI(): Promise<{
+        url: string;
+    }>;
 }

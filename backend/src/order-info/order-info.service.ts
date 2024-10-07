@@ -1,4 +1,4 @@
-import { Get, Injectable, NotFoundException, Redirect } from '@nestjs/common';
+import { Get, Injectable, NotFoundException } from '@nestjs/common';
 import { OrderData } from './entities/OrderData.entity';
 import { SubmitOrderDto } from './dto/submit-order.dto';
 
@@ -33,9 +33,5 @@ export class OrderInfoService {
   remove(id: number) {
     this.getOne(id);
     this.orderDatas = this.orderDatas.filter((order) => order.id !== +id);
-  }
-
-  moveTo(link: string) {
-    Redirect(link);
   }
 }

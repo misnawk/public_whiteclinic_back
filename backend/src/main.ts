@@ -6,6 +6,8 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const port = 8000;
 
+  app.enableCors({ origin: true, credentials: true });
+
   setupSwagger(app);
 
   await app.listen(port);

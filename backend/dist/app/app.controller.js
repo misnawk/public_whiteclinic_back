@@ -14,12 +14,16 @@ const common_1 = require("@nestjs/common");
 let AppController = class AppController {
     getHello() {
         console.log(`server port is opened`);
-        return `<h1>Server is running...</h1>`;
+        return `
+    <h1>WhiteClinic Server is running...</h1>
+    <h3>Default Router is Routing this Page !</h3>
+    <div>WhiteClinic Default Routing Page</div>
+    `;
     }
 };
 exports.AppController = AppController;
 __decorate([
-    (0, common_1.Get)(),
+    (0, common_1.Get)('/'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", String)
