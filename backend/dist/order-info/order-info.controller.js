@@ -35,9 +35,6 @@ let OrderInfoController = class OrderInfoController {
     remove(orderId) {
         return this.orderService.remove(orderId);
     }
-    moveTo(link) {
-        return link;
-    }
 };
 exports.OrderInfoController = OrderInfoController;
 __decorate([
@@ -74,13 +71,6 @@ __decorate([
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", void 0)
 ], OrderInfoController.prototype, "remove", null);
-__decorate([
-    (0, common_1.Get)('/:link'),
-    __param(0, (0, common_1.Query)('http://localhost:3000/customers/c_list')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
-], OrderInfoController.prototype, "moveTo", null);
 exports.OrderInfoController = OrderInfoController = __decorate([
     (0, common_1.Controller)('orderInfo'),
     __metadata("design:paramtypes", [order_info_service_1.OrderInfoService])

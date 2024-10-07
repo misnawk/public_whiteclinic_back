@@ -39,9 +39,4 @@ export class OrderInfoController {
   remove(@Param('id') orderId: number) {
     return this.orderService.remove(orderId);
   }
-
-  @Get('/:link')
-  moveTo(@Query('http://localhost:3000/customers/c_list') link: string) {
-    return link;
-  }
 }

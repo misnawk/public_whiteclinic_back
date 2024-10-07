@@ -9,5 +9,4 @@ export declare class OrderInfoController {
     getOne(orderId: number): OrderData;
     create(orderData: SubmitOrderDto): void;
     remove(orderId: number): void;
-    moveTo(link: string): string;
 }
