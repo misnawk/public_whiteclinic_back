@@ -4,7 +4,7 @@ import { setupSwagger } from './util/setupSwagger';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, { bodyParser: false });
-  app.setGlobalPrefix('orderInfo');
+  app.setGlobalPrefix('/orderInfo');
   const port = 8000;
 
   app.enableCors({ origin: true, credentials: true });
