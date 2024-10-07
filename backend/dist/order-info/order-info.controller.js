@@ -39,6 +39,9 @@ let OrderInfoController = class OrderInfoController {
     async toSwaggerUI() {
         return { url: 'http://localhost:8000/orderInfo/getAll' };
     }
+    findAll(res) {
+        res.status(common_1.HttpStatus.OK).json([' library-specific response object test']);
+    }
 };
 exports.OrderInfoController = OrderInfoController;
 __decorate([
@@ -110,6 +113,13 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], OrderInfoController.prototype, "toSwaggerUI", null);
+__decorate([
+    (0, common_1.Get)('responseObject'),
+    __param(0, (0, common_1.Res)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], OrderInfoController.prototype, "findAll", null);
 exports.OrderInfoController = OrderInfoController = __decorate([
     (0, common_1.Controller)('orderInfo'),
     (0, swagger_1.ApiTags)('주문정보 API'),

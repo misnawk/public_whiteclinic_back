@@ -62,7 +62,7 @@ const menuItems = [
     links: [
       {
         name: '일자별 매출',
-        href: '/sales/daily',
+        href: '/orderInfo/api-docs',
         icon: FormatListBulletedIcon,
       },
       { name: '주간 매출', href: '/sales/weekly', icon: PlaylistAddIcon },

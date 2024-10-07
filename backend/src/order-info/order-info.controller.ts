@@ -3,15 +3,18 @@ import {
   Controller,
   Delete,
   Get,
+  HttpStatus,
   Param,
   Post,
   Query,
   Redirect,
+  Res,
 } from '@nestjs/common';
 import { SubmitOrderDto } from './dto/submit-order.dto';
 import { OrderInfoService } from './order-info.service';
 import { OrderData } from './entities/OrderData.entity';
 import { ApiCreatedResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { Response } from 'express';
 
 @Controller('orderInfo')
 @ApiTags('주문정보 API')
@@ -32,7 +35,7 @@ export class OrderInfoController {
     summary: 'id 파라미터 확인 API',
     description: 'id 파라미터 값을 반환한다.',
   })
-  async search(@Query('id') searchingId: number) {
+  async search(@Query('id') searchingId: number): Promise<string> {
     return `We are searching for a orderData id matched with ${searchingId}`;
   }
 
@@ -41,7 +44,7 @@ export class OrderInfoController {
     summary: 'id 기반 주문정보 조회 API',
     description: 'id 파라미터와 매치되는 주문정보를 불러온다.',
   })
-  async getOne(@Param('id') orderId: number) {
+  async getOne(@Param('id') orderId: number): Promise<OrderData> {
     return this.orderService.getOne(orderId);
   }
 
@@ -54,7 +57,7 @@ export class OrderInfoController {
     description: '주문정보를 생성한다.',
     type: SubmitOrderDto,
   })
-  async create(@Body() orderData: SubmitOrderDto) {
+  async create(@Body() orderData: SubmitOrderDto): Promise<void> {
     return this.orderService.create(orderData);
   }
 
@@ -63,7 +66,7 @@ export class OrderInfoController {
     summary: 'id 기반 주문정보 삭제 API',
     description: 'id 파라미터와 매치되는 주문정보를 DB에서 삭제한다.',
   })
-  async remove(@Param('id') orderId: number) {
+  async remove(@Param('id') orderId: number): Promise<void> {
     return this.orderService.remove(orderId);
   }
 
@@ -73,7 +76,12 @@ export class OrderInfoController {
     summary: 'getAll GET 메서드 리디렉트 API',
     description: '리디렉트 테스트 API',
   })
-  async toSwaggerUI() {
+  async toSwaggerUI(): Promise<any> {
     return { url: 'http://localhost:8000/orderInfo/getAll' };
+  }
+
+  @Get('responseObject')
+  findAll(@Res() res: Response) {
+    res.status(HttpStatus.OK).json([' library-specific response object test']);
   }
 }
