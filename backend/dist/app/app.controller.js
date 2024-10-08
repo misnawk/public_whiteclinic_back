@@ -12,18 +12,23 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppController = void 0;
 const common_1 = require("@nestjs/common");
 let AppController = class AppController {
-    goHome() {
-        console.log('Redirect test');
+    getHello() {
+        console.log(`server port is opened`);
+        return `
+    <h1>WhiteClinic Server is running...</h1>
+    <h3>Default Router is Routing this Page !</h3>
+    <div>WhiteClinic Default Routing Page</div>
+
+    `;
     }
 };
 exports.AppController = AppController;
 __decorate([
     (0, common_1.Get)(),
-    (0, common_1.Redirect)('https://whiteclinic-preview.vercel.app/customers/c_list', 302),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
-], AppController.prototype, "goHome", null);
+    __metadata("design:returntype", String)
+], AppController.prototype, "getHello", null);
 exports.AppController = AppController = __decorate([
     (0, common_1.Controller)()
 ], AppController);
