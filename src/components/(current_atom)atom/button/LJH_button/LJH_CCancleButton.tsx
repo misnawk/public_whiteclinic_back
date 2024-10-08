@@ -1,4 +1,5 @@
 import { Button, Typography } from '@mui/material';
+import Link from 'next/link';
 
 type cancleBtnTexts = '취소' | '등록중지' | '아니오';
 type btnType = 'button' | 'reset' | 'submit';
