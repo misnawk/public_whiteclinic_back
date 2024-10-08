@@ -26,8 +26,9 @@ export class OrderInfoController {
     summary: '주문정보 전체조회 API',
     description: '모든 주문정보를 불러온다.',
   })
-  async getAll(): Promise<OrderData[]> {
-    return this.orderService.getAll();
+  async getAll(@Res() res): Promise<OrderData[]> {
+    res = this.orderService.getAll();
+    return res;
   }
 
   @Get('search')
