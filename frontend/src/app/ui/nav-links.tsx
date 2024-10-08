@@ -11,6 +11,7 @@ import { ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/mater
 import Divider from '@mui/material/Divider';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { API_URL } from '@/util/urlUtil';
 
 const menuItems = [
   {
@@ -62,7 +63,7 @@ const menuItems = [
     links: [
       {
         name: 'Swagger UI',
-        href: '/orderInfo/api-docs',
+        href: API_URL,
         icon: FormatListBulletedIcon,
       },
       { name: '주간 매출', href: '/sales/weekly', icon: PlaylistAddIcon },
