@@ -10,7 +10,7 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 export function setupSwagger(app: INestApplication) {
   const options = new DocumentBuilder()
     .setTitle('WhiteClinic Project API Document')
-    .setDescription('WhiteClinic Project API Docs description')
+    .setDescription('WhiteClinic Project API Docs')
     .setVersion('1.0.0')
     .build();
 
