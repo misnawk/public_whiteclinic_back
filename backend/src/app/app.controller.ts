@@ -1,14 +1,10 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Redirect } from '@nestjs/common';
 
 @Controller()
 export class AppController {
   @Get()
-  getHello(): string {
-    console.log(`server port is opened`);
-    return `
-    <h1>WhiteClinic Server is running...</h1>
-    <h3>Default Router is Routing this Page !</h3>
-    <div>WhiteClinic Default Routing Page</div>
-    `;
+  @Redirect('https://whiteclinic-preview.vercel.app/customers/c_list', 302)
+  goHome() {
+    console.log('Redirect test');
   }
 }
