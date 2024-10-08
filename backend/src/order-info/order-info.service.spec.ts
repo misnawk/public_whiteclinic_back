@@ -15,4 +15,8 @@ describe('OrderInfoService', () => {
   it('should be defined', () => {
     expect(service).toBeDefined();
   });
+
+  it('shoud return an array', () => {
+    expect(service.getAll()).toEqual([]);
+  });
 });
