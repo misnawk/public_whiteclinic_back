@@ -2,13 +2,13 @@
   "version": 2,
   "builds": [
     {
-      "src": "*.js",
+      "src": "/frontend/*.js",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
-      "src": "/(.*)",
+      "src": "/frontend/*",
       "dest": "/(.*)",
       "methods": ["GET", "POST", "PUT", "DELETE"]
     }
