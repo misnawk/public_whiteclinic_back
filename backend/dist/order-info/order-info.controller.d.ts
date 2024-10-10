@@ -6,6 +6,7 @@ export declare class OrderInfoController {
     private readonly orderService;
     constructor(orderService: OrderInfoService);
     getAll(): Promise<OrderData[]>;
+    getAllInfos(): Promise<SubmitOrderDto[]>;
     search(searchingId: number): Promise<string>;
     getOne(orderId: number): Promise<OrderData>;
     create(orderData: SubmitOrderDto): Promise<void>;

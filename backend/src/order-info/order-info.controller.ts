@@ -26,9 +26,17 @@ export class OrderInfoController {
     summary: '주문정보 전체조회 API',
     description: '모든 주문정보를 불러온다.',
   })
-  async getAll(@Res() res): Promise<OrderData[]> {
-    res = this.orderService.getAll();
-    return res;
+  async getAll(): Promise<OrderData[]> {
+    return this.orderService.getAll();
+  }
+
+  @Get('getAllInfo')
+  @ApiOperation({
+    summary: 'DB 내부 정보 전체조회 API',
+    description: 'vercel db 연결 테스트용 API.',
+  })
+  async getAllInfos(): Promise<SubmitOrderDto[]> {
+    return this.orderService.findAll();
   }
 
   @Get('search')
@@ -40,7 +48,7 @@ export class OrderInfoController {
     return `We are searching for a orderData id matched with ${searchingId}`;
   }
 
-  @Get('/searchBy:id')
+  @Get('searchBy:id')
   @ApiOperation({
     summary: 'id 기반 주문정보 조회 API',
     description: 'id 파라미터와 매치되는 주문정보를 불러온다.',
@@ -48,6 +56,16 @@ export class OrderInfoController {
   async getOne(@Param('id') orderId: number): Promise<OrderData> {
     return this.orderService.getOne(orderId);
   }
+
+  //TODO : 차후 DB에서 ID 조회 후 내용 수정하는 SQL 문 작성 필요
+  // @Post('updateOrderBy:id')
+  // @ApiOperation({
+  //   summary: 'id 기반 주문정보 수정',
+  //   description: 'id 파라미터와 매치되는 주문정보를 DB 에서 찾아 수정한다.',
+  // })
+  // async updateOne(@Param('id') orderId: number): Promise<OrderData> {
+  //   return this.orderService.
+  // }
 
   @Post('createOrder')
   @ApiOperation({
@@ -62,7 +80,7 @@ export class OrderInfoController {
     return this.orderService.create(orderData);
   }
 
-  @Delete('/deleteBy:id')
+  @Delete('deleteBy:id')
   @ApiOperation({
     summary: 'id 기반 주문정보 삭제 API',
     description: 'id 파라미터와 매치되는 주문정보를 DB에서 삭제한다.',

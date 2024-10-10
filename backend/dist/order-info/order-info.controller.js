@@ -24,6 +24,9 @@ let OrderInfoController = class OrderInfoController {
     async getAll() {
         return this.orderService.getAll();
     }
+    async getAllInfos() {
+        return this.orderService.findAll();
+    }
     async search(searchingId) {
         return `We are searching for a orderData id matched with ${searchingId}`;
     }
@@ -55,6 +58,16 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], OrderInfoController.prototype, "getAll", null);
 __decorate([
+    (0, common_1.Get)('getAllInfo'),
+    (0, swagger_1.ApiOperation)({
+        summary: 'DB 내부 정보 전체조회 API',
+        description: 'vercel db 연결 테스트용 API.',
+    }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], OrderInfoController.prototype, "getAllInfos", null);
+__decorate([
     (0, common_1.Get)('search'),
     (0, swagger_1.ApiOperation)({
         summary: 'id 파라미터 확인 API',
@@ -66,7 +79,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], OrderInfoController.prototype, "search", null);
 __decorate([
-    (0, common_1.Get)('/searchBy:id'),
+    (0, common_1.Get)('searchBy:id'),
     (0, swagger_1.ApiOperation)({
         summary: 'id 기반 주문정보 조회 API',
         description: 'id 파라미터와 매치되는 주문정보를 불러온다.',
@@ -92,7 +105,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], OrderInfoController.prototype, "create", null);
 __decorate([
-    (0, common_1.Delete)('/deleteBy:id'),
+    (0, common_1.Delete)('deleteBy:id'),
     (0, swagger_1.ApiOperation)({
         summary: 'id 기반 주문정보 삭제 API',
         description: 'id 파라미터와 매치되는 주문정보를 DB에서 삭제한다.',

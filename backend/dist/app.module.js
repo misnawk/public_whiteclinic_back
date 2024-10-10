@@ -10,12 +10,27 @@ exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
 const app_controller_1 = require("./app/app.controller");
 const order_info_module_1 = require("./order-info/order-info.module");
+const typeorm_1 = require("@nestjs/typeorm");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [order_info_module_1.OrderInfoModule],
+        imports: [
+            typeorm_1.TypeOrmModule.forRoot({
+                type: 'postgres',
+                host: 'ep-cold-band-a71ed1zj-pooler.ap-southeast-2.aws.neon.tech',
+                url: 'postgres://default:hNOtdfu8sWy3@ep-cold-band-a71ed1zj-pooler.ap-southeast-2.aws.neon.tech:5432/verceldb?sslmode=require',
+                username: 'default',
+                password: 'hNOtdfu8sWy3',
+                database: 'verceldb',
+                entities: [],
+                autoLoadEntities: true,
+                synchronize: false,
+                logging: true,
+            }),
+            order_info_module_1.OrderInfoModule,
+        ],
         controllers: [app_controller_1.AppController],
         providers: [],
     })
