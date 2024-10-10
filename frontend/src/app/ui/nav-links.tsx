@@ -11,7 +11,7 @@ import { ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/mater
 import Divider from '@mui/material/Divider';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { API_URL } from '@/util/urlUtil';
+import { GET_ALL_ORDERINFO, SERVER_URL } from '@/util/urlUtil';
 
 const menuItems = [
   {
@@ -62,8 +62,8 @@ const menuItems = [
     icon: TrendingUpIcon,
     links: [
       {
-        name: 'Swagger UI',
-        href: API_URL,
+        name: 'DB CONNECT',
+        href: GET_ALL_ORDERINFO,
         icon: FormatListBulletedIcon,
       },
       { name: '주간 매출', href: '/sales/weekly', icon: PlaylistAddIcon },
