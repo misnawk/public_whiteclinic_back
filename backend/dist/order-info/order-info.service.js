@@ -36,10 +36,7 @@ let OrderInfoService = class OrderInfoService {
         return order;
     }
     create(orderInfo) {
-        this.orderDatas.push({
-            id: this.orderDatas.length + 1,
-            ...orderInfo,
-        });
+        this.orderDataRepository.create({ ...orderInfo });
     }
     remove(id) {
         this.getOne(id);

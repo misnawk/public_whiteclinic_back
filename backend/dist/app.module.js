@@ -11,6 +11,7 @@ const common_1 = require("@nestjs/common");
 const app_controller_1 = require("./app/app.controller");
 const order_info_module_1 = require("./order-info/order-info.module");
 const typeorm_1 = require("@nestjs/typeorm");
+const engineer_info_module_1 = require("./engineer-info/engineer-info.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -30,6 +31,7 @@ exports.AppModule = AppModule = __decorate([
                 logging: true,
             }),
             order_info_module_1.OrderInfoModule,
+            engineer_info_module_1.EngineerInfoModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [],

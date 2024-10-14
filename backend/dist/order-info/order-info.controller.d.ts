@@ -9,7 +9,7 @@ export declare class OrderInfoController {
     getAllInfos(): Promise<SubmitOrderDto[]>;
     search(searchingId: number): Promise<string>;
     getOne(orderId: number): Promise<OrderData>;
-    create(orderData: SubmitOrderDto): Promise<void>;
+    create(orderInfo: SubmitOrderDto): Promise<void>;
     remove(orderId: number): Promise<void>;
     toSwaggerUI(): Promise<any>;
     findAll(res: Response): void;

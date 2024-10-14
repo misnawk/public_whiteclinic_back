@@ -6,21 +6,20 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.OrderInfoModule = void 0;
+exports.EngineerInfoModule = void 0;
 const common_1 = require("@nestjs/common");
-const order_info_service_1 = require("./order-info.service");
+const engineer_info_controller_1 = require("./controller/engineer-info.controller");
+const engineer_info_service_1 = require("./service/engineer-info.service");
 const typeorm_1 = require("@nestjs/typeorm");
-const OrderData_entity_1 = require("./entities/OrderData.entity");
-const order_info_controller_1 = require("./order-info.controller");
-let OrderInfoModule = class OrderInfoModule {
+const engineer_info_entity_1 = require("./entities/engineer-info.entity");
+let EngineerInfoModule = class EngineerInfoModule {
 };
-exports.OrderInfoModule = OrderInfoModule;
-exports.OrderInfoModule = OrderInfoModule = __decorate([
+exports.EngineerInfoModule = EngineerInfoModule;
+exports.EngineerInfoModule = EngineerInfoModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forFeature([OrderData_entity_1.OrderData])],
-        controllers: [order_info_controller_1.OrderInfoController],
-        providers: [order_info_service_1.OrderInfoService],
-        exports: [typeorm_1.TypeOrmModule],
+        imports: [typeorm_1.TypeOrmModule.forFeature([engineer_info_entity_1.Engineer])],
+        controllers: [engineer_info_controller_1.EngineerInfoController],
+        providers: [engineer_info_service_1.EngineerInfoService],
     })
-], OrderInfoModule);
-//# sourceMappingURL=order-info.module.js.map
+], EngineerInfoModule);
+//# sourceMappingURL=engineer-info.module.js.map

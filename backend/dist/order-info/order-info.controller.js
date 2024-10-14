@@ -33,8 +33,8 @@ let OrderInfoController = class OrderInfoController {
     async getOne(orderId) {
         return this.orderService.getOne(orderId);
     }
-    async create(orderData) {
-        return this.orderService.create(orderData);
+    async create(orderInfo) {
+        return this.orderService.create(orderInfo);
     }
     async remove(orderId) {
         return this.orderService.remove(orderId);

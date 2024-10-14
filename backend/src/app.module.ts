@@ -2,6 +2,8 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app/app.controller';
 import { OrderInfoModule } from './order-info/order-info.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { EngineerInfoModule } from './engineer-info/engineer-info.module';
+
 
 @Module({
   imports: [
@@ -18,6 +20,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       logging: true,
     }),
     OrderInfoModule,
+    EngineerInfoModule,
   ],
   controllers: [AppController],
   providers: [],
