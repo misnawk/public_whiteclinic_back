@@ -3,8 +3,12 @@ import { AppController } from './app/app.controller';
 import { OrderInfoModule } from './order-info/order-info.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import { EngineerInfoModule } from './engineer-info/engineer-info.module';
 
+=======
+import { TestModule } from './test/test.module';
+>>>>>>> Stashed changes
 =======
 import { TestModule } from './test/test.module';
 >>>>>>> Stashed changes
@@ -25,7 +29,11 @@ import { TestModule } from './test/test.module';
     }),
     OrderInfoModule,
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     EngineerInfoModule,
+=======
+    TestModule,
+>>>>>>> Stashed changes
 =======
     TestModule,
 >>>>>>> Stashed changes
