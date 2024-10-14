@@ -16,5 +16,7 @@ export function setupSwagger(app: INestApplication) {
 
   const document = SwaggerModule.createDocument(app, options);
 
-  SwaggerModule.setup('/api-docs', app, document);
+  SwaggerModule.setup('api-docs', app, document, {
+    customSwaggerUiPath: '../../public',
+  });
 }
