@@ -2,8 +2,12 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app/app.controller';
 import { OrderInfoModule } from './order-info/order-info.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+<<<<<<< Updated upstream
 import { EngineerInfoModule } from './engineer-info/engineer-info.module';
 
+=======
+import { TestModule } from './test/test.module';
+>>>>>>> Stashed changes
 
 @Module({
   imports: [
@@ -20,7 +24,11 @@ import { EngineerInfoModule } from './engineer-info/engineer-info.module';
       logging: true,
     }),
     OrderInfoModule,
+<<<<<<< Updated upstream
     EngineerInfoModule,
+=======
+    TestModule,
+>>>>>>> Stashed changes
   ],
   controllers: [AppController],
   providers: [],
