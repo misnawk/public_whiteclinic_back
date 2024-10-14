@@ -76,8 +76,8 @@ export class OrderInfoController {
     description: '주문정보를 생성한다.',
     type: SubmitOrderDto,
   })
-  async create(@Body() orderData: SubmitOrderDto): Promise<void> {
-    return this.orderService.create(orderData);
+  async create(@Body() orderInfo: SubmitOrderDto): Promise<void> {
+    return this.orderService.create(orderInfo);
   }
 
   @Delete('deleteBy:id')

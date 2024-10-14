@@ -47,10 +47,7 @@ export class OrderInfoService {
   // }
 
   create(orderInfo: SubmitOrderDto) {
-    this.orderDatas.push({
-      id: this.orderDatas.length + 1,
-      ...orderInfo,
-    });
+    this.orderDataRepository.create({ ...orderInfo });
   }
 
   remove(id: number) {
