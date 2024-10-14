@@ -19,7 +19,6 @@ import { EngineerInfoModule } from './engineer-info/engineer-info.module';
       logging: true,
     }),
     OrderInfoModule,
-
     EngineerInfoModule,
   ],
   controllers: [AppController],
