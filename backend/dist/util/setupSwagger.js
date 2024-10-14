@@ -9,6 +9,8 @@ function setupSwagger(app) {
         .setVersion('1.0.0')
         .build();
     const document = swagger_1.SwaggerModule.createDocument(app, options);
-    swagger_1.SwaggerModule.setup('api-docs', app, document);
+    swagger_1.SwaggerModule.setup('api-docs', app, document, {
+        customCssUrl: 'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.0/swagger-ui.css',
+    });
 }
 //# sourceMappingURL=setupSwagger.js.map
