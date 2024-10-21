@@ -12,12 +12,18 @@ const app_controller_1 = require("./app/app.controller");
 const order_info_module_1 = require("./order-info/order-info.module");
 const typeorm_1 = require("@nestjs/typeorm");
 const engineer_info_module_1 = require("./engineer-info/engineer-info.module");
+const serve_static_1 = require("@nestjs/serve-static");
+const path_1 = require("path");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
+            serve_static_1.ServeStaticModule.forRoot({
+                rootPath: (0, path_1.join)(__dirname, '..', 'public'),
+                serveRoot: '/api-docs',
+            }),
             typeorm_1.TypeOrmModule.forRoot({
                 type: 'postgres',
                 host: 'ep-cold-band-a71ed1zj-pooler.ap-southeast-2.aws.neon.tech',

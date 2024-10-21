@@ -9,32 +9,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Engineer = void 0;
+exports.EngineerPayDay = void 0;
 const typeorm_1 = require("typeorm");
-let Engineer = class Engineer {
+let EngineerPayDay = class EngineerPayDay {
 };
-exports.Engineer = Engineer;
+exports.EngineerPayDay = EngineerPayDay;
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)({ name: 'id' }),
     __metadata("design:type", Number)
-], Engineer.prototype, "id", void 0);
+], EngineerPayDay.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ name: 'name' }),
-    __metadata("design:type", String)
-], Engineer.prototype, "name", void 0);
+    (0, typeorm_1.Column)({ name: 'engineer_id' }),
+    __metadata("design:type", Number)
+], EngineerPayDay.prototype, "engineerId", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ name: 'phone_number' }),
-    __metadata("design:type", String)
-], Engineer.prototype, "phoneNumber", void 0);
+    (0, typeorm_1.Column)({ name: 'weekdays' }),
+    __metadata("design:type", Number)
+], EngineerPayDay.prototype, "weekdays", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ name: 'location' }),
-    __metadata("design:type", String)
-], Engineer.prototype, "location", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ name: 'remark' }),
-    __metadata("design:type", String)
-], Engineer.prototype, "remark", void 0);
-exports.Engineer = Engineer = __decorate([
-    (0, typeorm_1.Entity)('engineer')
-], Engineer);
-//# sourceMappingURL=engineer-info.entity.js.map
+    (0, typeorm_1.Column)({ name: 'is_pay' }),
+    __metadata("design:type", Boolean)
+], EngineerPayDay.prototype, "isPay", void 0);
+exports.EngineerPayDay = EngineerPayDay = __decorate([
+    (0, typeorm_1.Entity)('engineer_payday')
+], EngineerPayDay);
+//# sourceMappingURL=engineer-payDay.entity.js.map

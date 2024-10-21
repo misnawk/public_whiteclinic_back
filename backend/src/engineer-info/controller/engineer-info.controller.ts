@@ -1,45 +1,33 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-} from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
 import { EngineerInfoService } from '../service/engineer-info.service';
-import { CreateEngineerInfoDto } from '../dto/create-engineer-info.dto';
-import { UpdateEngineerInfoDto } from '../dto/update-engineer-info.dto';
+import { ApiOperation, ApiTags } from '@nestjs/swagger';
 
 @Controller('engineer-info')
+@ApiTags('기사정보 API')
 export class EngineerInfoController {
   constructor(private readonly engineerInfoService: EngineerInfoService) {}
 
-  @Post()
-  create(@Body() createEngineerInfoDto: CreateEngineerInfoDto) {
-    return this.engineerInfoService.create(createEngineerInfoDto);
-  }
-
-  @Get()
-  findAll() {
-    return this.engineerInfoService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.engineerInfoService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(
-    @Param('id') id: string,
-    @Body() updateEngineerInfoDto: UpdateEngineerInfoDto,
-  ) {
-    return this.engineerInfoService.update(+id, updateEngineerInfoDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.engineerInfoService.remove(+id);
+  // 모든 기사님들의 정보를 보내준다.
+  @Get('getAll')
+  @ApiOperation({
+    summary: '기사 이름, 전화번호, 주소, 급여',
+    // description: '기사 이름, 전화번호, 주소를 불러온다.',
+  })
+  async findAll() {
+    try {
+      const [engineer, engineerPay, engineerPayDay] = await Promise.all([
+        this.engineerInfoService.engineer(),
+        this.engineerInfoService.enginnerPay(),
+        this.engineerInfoService.engineerPayDay(),
+      ]);
+      return {
+        engineer,
+        engineerPay,
+        engineerPayDay,
+      };
+    } catch (error) {
+      console.error('잘못된 데이터입니다.', error);
+      throw error;
+    }
   }
 }
