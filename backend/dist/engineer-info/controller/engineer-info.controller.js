@@ -19,15 +19,17 @@ let EngineerInfoController = class EngineerInfoController {
     }
     async findAll() {
         try {
-            const [engineer, engineerPay, engineerPayDay] = await Promise.all([
+            const [engineer, engineerPay, engineerPayDay, EngineerCommissionRates] = await Promise.all([
                 this.engineerInfoService.engineer(),
                 this.engineerInfoService.enginnerPay(),
                 this.engineerInfoService.engineerPayDay(),
+                this.engineerInfoService.engineerCommissionRates(),
             ]);
             return {
                 engineer,
                 engineerPay,
                 engineerPayDay,
+                EngineerCommissionRates,
             };
         }
         catch (error) {
@@ -40,7 +42,7 @@ exports.EngineerInfoController = EngineerInfoController;
 __decorate([
     (0, common_1.Get)('getAll'),
     (0, swagger_1.ApiOperation)({
-        summary: '기사 이름, 전화번호, 주소, 급여',
+        summary: '기사 이름, 전화번호, 주소, 날짜-급여, 수당률, 스킬, 지급여부,지급일',
     }),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),

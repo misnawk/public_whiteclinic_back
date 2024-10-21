@@ -18,12 +18,14 @@ const typeorm_1 = require("@nestjs/typeorm");
 const engineer_info_entity_1 = require("../entities/engineer-info.entity");
 const engineer_dailyearnings_entity_1 = require("../entities/engineer-dailyearnings.entity");
 const engineer_payDay_entity_1 = require("../entities/engineer-payDay.entity");
+const engineer_commissionRates_entity_1 = require("../entities/engineer-commissionRates.entity");
 const typeorm_2 = require("typeorm");
 let EngineerInfoService = class EngineerInfoService {
-    constructor(EngineerRepository, engineerDailyearningsReopsitory, EngineerPayDayRepository) {
+    constructor(EngineerRepository, engineerDailyearningsReopsitory, EngineerPayDayRepository, EngineerCommissionRatesRepository) {
         this.EngineerRepository = EngineerRepository;
         this.engineerDailyearningsReopsitory = engineerDailyearningsReopsitory;
         this.EngineerPayDayRepository = EngineerPayDayRepository;
+        this.EngineerCommissionRatesRepository = EngineerCommissionRatesRepository;
     }
     create(createEngineerInfoDto) {
         return 'This action adds a new engineerInfo';
@@ -58,6 +60,19 @@ let EngineerInfoService = class EngineerInfoService {
             weekdayName: dayName,
         };
     }
+    async engineerCommissionRates() {
+        const engineerCommissionRates = await this.EngineerCommissionRatesRepository.find();
+        console.log(engineerCommissionRates);
+        return engineerCommissionRates.map(this.RatesToFilter);
+    }
+    RatesToFilter(rate) {
+        const rateArray = [50, 55, 60, 65, 70, 75, 80];
+        const resultRate = rateArray[rate.rateId - 1] || '없음';
+        return {
+            ...rate,
+            rateId: resultRate,
+        };
+    }
 };
 exports.EngineerInfoService = EngineerInfoService;
 exports.EngineerInfoService = EngineerInfoService = __decorate([
@@ -65,7 +80,9 @@ exports.EngineerInfoService = EngineerInfoService = __decorate([
     __param(0, (0, typeorm_1.InjectRepository)(engineer_info_entity_1.Engineer)),
     __param(1, (0, typeorm_1.InjectRepository)(engineer_dailyearnings_entity_1.EngineerDailyearnings)),
     __param(2, (0, typeorm_1.InjectRepository)(engineer_payDay_entity_1.EngineerPayDay)),
+    __param(3, (0, typeorm_1.InjectRepository)(engineer_commissionRates_entity_1.EngineerCommissionRates)),
     __metadata("design:paramtypes", [typeorm_2.Repository,
+        typeorm_2.Repository,
         typeorm_2.Repository,
         typeorm_2.Repository])
 ], EngineerInfoService);

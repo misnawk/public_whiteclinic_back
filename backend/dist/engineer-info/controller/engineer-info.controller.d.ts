@@ -6,5 +6,6 @@ export declare class EngineerInfoController {
         engineer: import("../entities/engineer-info.entity").Engineer[];
         engineerPay: import("../entities/engineer-dailyearnings.entity").EngineerDailyearnings[];
         engineerPayDay: import("../entities/engineer-payDay.entity").EngineerPayDay[];
+        EngineerCommissionRates: import("../entities/engineer-commissionRates.entity").EngineerCommissionRates[];
     }>;
 }

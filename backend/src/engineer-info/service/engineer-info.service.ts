@@ -5,6 +5,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Engineer } from '../entities/engineer-info.entity';
 import { EngineerDailyearnings } from '../entities/engineer-dailyearnings.entity';
 import { EngineerPayDay } from '../entities/engineer-payDay.entity';
+import { EngineerCommissionRates } from '../entities/engineer-commissionRates.entity';
 import { Repository } from 'typeorm';
 
 @Injectable()
@@ -18,16 +19,14 @@ export class EngineerInfoService {
 
     @InjectRepository(EngineerPayDay)
     private EngineerPayDayRepository: Repository<EngineerPayDay>,
-  ) {}
 
-  create(createEngineerInfoDto: CreateEngineerInfoDto) {
-    return 'This action adds a new engineerInfo';
-  }
+    @InjectRepository(EngineerCommissionRates)
+    private EngineerCommissionRatesRepository: Repository<EngineerCommissionRates>,
+  ) {}
 
   async engineer(): Promise<Engineer[]> {
     const engineerData = await this.EngineerRepository.find();
     console.log(engineerData);
-
     return engineerData;
   }
 
@@ -57,6 +56,23 @@ export class EngineerInfoService {
     return {
       ...payDay,
       weekdayName: dayName,
+    };
+  }
+
+  async engineerCommissionRates(): Promise<EngineerCommissionRates[]> {
+    const engineerCommissionRates =
+      await this.EngineerCommissionRatesRepository.find();
+    console.log(engineerCommissionRates);
+
+    return engineerCommissionRates.map(this.RatesToFilter);
+  }
+  private RatesToFilter(rate: EngineerCommissionRates): any {
+    const rateArray = [50, 55, 60, 65, 70, 75, 80];
+    const resultRate = rateArray[rate.rateId - 1] || '없음';
+
+    return {
+      ...rate,
+      rateId: resultRate,
     };
   }
 }
