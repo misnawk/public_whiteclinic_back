@@ -55,7 +55,7 @@ export class EngineerInfoService {
 
     return {
       ...payDay,
-      weekdayName: dayName,
+      weekdays: dayName,
     };
   }
 

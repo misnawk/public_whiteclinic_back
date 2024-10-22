@@ -1,4 +1,3 @@
-import { CreateEngineerInfoDto } from '../dto/create-engineer-info.dto';
 import { Engineer } from '../entities/engineer-info.entity';
 import { EngineerDailyearnings } from '../entities/engineer-dailyearnings.entity';
 import { EngineerPayDay } from '../entities/engineer-payDay.entity';
@@ -10,7 +9,6 @@ export declare class EngineerInfoService {
     private EngineerPayDayRepository;
     private EngineerCommissionRatesRepository;
     constructor(EngineerRepository: Repository<Engineer>, engineerDailyearningsReopsitory: Repository<EngineerDailyearnings>, EngineerPayDayRepository: Repository<EngineerPayDay>, EngineerCommissionRatesRepository: Repository<EngineerCommissionRates>);
-    create(createEngineerInfoDto: CreateEngineerInfoDto): string;
     engineer(): Promise<Engineer[]>;
     enginnerPay(): Promise<EngineerDailyearnings[]>;
     engineerPayDay(): Promise<EngineerPayDay[]>;

@@ -27,9 +27,6 @@ let EngineerInfoService = class EngineerInfoService {
         this.EngineerPayDayRepository = EngineerPayDayRepository;
         this.EngineerCommissionRatesRepository = EngineerCommissionRatesRepository;
     }
-    create(createEngineerInfoDto) {
-        return 'This action adds a new engineerInfo';
-    }
     async engineer() {
         const engineerData = await this.EngineerRepository.find();
         console.log(engineerData);
@@ -57,7 +54,7 @@ let EngineerInfoService = class EngineerInfoService {
         const dayName = dayNames[payDay.weekdays - 1] || '없음';
         return {
             ...payDay,
-            weekdayName: dayName,
+            weekdays: dayName,
         };
     }
     async engineerCommissionRates() {
