@@ -5,14 +5,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { EngineerInfoModule } from './engineer-info/engineer-info.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
-<<<<<<< Updated upstream
 import { RegistrationModule } from './engineer-registration/registration.module';
-=======
 import { RefreshTokenModule } from './refresh_token/refresh_token.module';
 import { AdminModule } from './admin/admin.module';
 import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
->>>>>>> Stashed changes
 
 @Module({
   imports: [
@@ -37,13 +34,10 @@ import { ConfigModule } from '@nestjs/config';
     }),
     OrderInfoModule,
     EngineerInfoModule,
-<<<<<<< Updated upstream
     RegistrationModule,
-=======
     RefreshTokenModule,
     AdminModule,
     AuthModule,
->>>>>>> Stashed changes
   ],
   controllers: [AppController],
   providers: [],
