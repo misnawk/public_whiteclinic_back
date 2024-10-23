@@ -14,6 +14,7 @@ const typeorm_1 = require("@nestjs/typeorm");
 const engineer_info_module_1 = require("./engineer-info/engineer-info.module");
 const serve_static_1 = require("@nestjs/serve-static");
 const path_1 = require("path");
+const registration_module_1 = require("./engineer-registration/registration.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -38,6 +39,7 @@ exports.AppModule = AppModule = __decorate([
             }),
             order_info_module_1.OrderInfoModule,
             engineer_info_module_1.EngineerInfoModule,
+            registration_module_1.RegistrationModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [],
