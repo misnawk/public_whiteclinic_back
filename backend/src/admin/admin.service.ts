@@ -7,7 +7,7 @@ import { bcrypt } from 'bcrypt';
 export class AdminService {
   constructor(
     @InjectRepository(Admin)
-    private adminRepository: Repository<Admin>,
+    private readonly adminRepository: Repository<Admin>,
   ) {}
 
   // 관리자 계정 생성

@@ -7,6 +7,13 @@ function setupSwagger(app) {
         .setTitle('WhiteClinic Project API Document')
         .setDescription('WhiteClinic Project API Docs')
         .setVersion('1.0.0')
+        .addBearerAuth({
+        type: 'http',
+        scheme: 'bearer',
+        bearerFormat: 'JWT',
+        description: 'Enter JWT token **_only_**',
+    }, 'access-token')
+        .addTag('auth')
         .build();
     const document = swagger_1.SwaggerModule.createDocument(app, options);
     swagger_1.SwaggerModule.setup('api-docs', app, document);

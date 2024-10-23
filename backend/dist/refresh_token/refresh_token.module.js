@@ -9,7 +9,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.RefreshTokenModule = void 0;
 const common_1 = require("@nestjs/common");
 const refresh_token_service_1 = require("./refresh_token.service");
-const refresh_token_controller_1 = require("./refresh_token.controller");
 const typeorm_1 = require("@nestjs/typeorm");
 const refresh_token_entity_1 = require("./entities/refresh_token.entity");
 let RefreshTokenModule = class RefreshTokenModule {
@@ -18,8 +17,9 @@ exports.RefreshTokenModule = RefreshTokenModule;
 exports.RefreshTokenModule = RefreshTokenModule = __decorate([
     (0, common_1.Module)({
         imports: [typeorm_1.TypeOrmModule.forFeature([refresh_token_entity_1.RefreshToken])],
-        controllers: [refresh_token_controller_1.RefreshTokenController],
+        controllers: [],
         providers: [refresh_token_service_1.RefreshTokenService],
+        exports: [refresh_token_service_1.RefreshTokenService],
     })
 ], RefreshTokenModule);
 //# sourceMappingURL=refresh_token.module.js.map

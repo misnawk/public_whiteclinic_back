@@ -9,9 +9,9 @@ import { RefreshResponseDTO } from 'src/refresh_token/dto/refresh_response.dto';
 @Injectable()
 export class AuthService {
   constructor(
-    private adminService: AdminService,
-    private refreshTokenService: RefreshTokenService,
-    private jwtService: JwtService,
+    private readonly adminService: AdminService,
+    private readonly refreshTokenService: RefreshTokenService,
+    private readonly jwtService: JwtService,
   ) {}
 
   // 로그인 : Access Token과 Refresh Token 발급
