@@ -9,7 +9,7 @@ import { Admin } from 'src/admin/entities/admin.entity';
 export class RefreshTokenService {
   constructor(
     @InjectRepository(RefreshToken)
-    private refreshTokenRepository: Repository<RefreshToken>,
+    private readonly refreshTokenRepository: Repository<RefreshToken>,
   ) {}
 
   // Refresh Token 저장
@@ -39,6 +39,11 @@ export class RefreshTokenService {
   // Refresh Token 제거 (로그아웃)
   async removeRefreshToken(token: string): Promise<void> {
     await this.refreshTokenRepository.delete({ token });
+  }
+
+  // 특정 사용자에 대한 모든 Refresh Token 제거 ( 전체 로그아웃 )
+  async removeAllRefreshToken(id: number): Promise<void> {
+    await this.refreshTokenRepository.delete({ admin: { id } });
   }
 
   // 만료된 Refresh Token 제거

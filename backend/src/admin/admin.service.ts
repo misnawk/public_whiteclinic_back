@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { CreateAdminDto } from './dto/create-admin.dto';
 import { Admin } from './entities/admin.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -16,7 +15,7 @@ export class AdminService {
     adminid: string,
     adminpw: string,
     role: string = 'admin',
-  ): Promise<CreateAdminDto> {
+  ): Promise<Admin> {
     const hashedPassword = await bcrypt.hash(adminpw, 10);
     const admin = this.adminRepository.create({
       adminid,

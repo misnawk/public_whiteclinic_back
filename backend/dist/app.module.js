@@ -14,13 +14,23 @@ const typeorm_1 = require("@nestjs/typeorm");
 const engineer_info_module_1 = require("./engineer-info/engineer-info.module");
 const serve_static_1 = require("@nestjs/serve-static");
 const path_1 = require("path");
+<<<<<<< Updated upstream
 const registration_module_1 = require("./engineer-registration/registration.module");
+=======
+const refresh_token_module_1 = require("./refresh_token/refresh_token.module");
+const admin_module_1 = require("./admin/admin.module");
+const auth_module_1 = require("./auth/auth.module");
+const config_1 = require("@nestjs/config");
+>>>>>>> Stashed changes
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
+            config_1.ConfigModule.forRoot({
+                isGlobal: true,
+            }),
             serve_static_1.ServeStaticModule.forRoot({
                 rootPath: (0, path_1.join)(__dirname, '..', 'public'),
                 serveRoot: '/api-docs',
@@ -39,7 +49,13 @@ exports.AppModule = AppModule = __decorate([
             }),
             order_info_module_1.OrderInfoModule,
             engineer_info_module_1.EngineerInfoModule,
+<<<<<<< Updated upstream
             registration_module_1.RegistrationModule,
+=======
+            refresh_token_module_1.RefreshTokenModule,
+            admin_module_1.AdminModule,
+            auth_module_1.AuthModule,
+>>>>>>> Stashed changes
         ],
         controllers: [app_controller_1.AppController],
         providers: [],
