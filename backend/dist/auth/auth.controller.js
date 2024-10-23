@@ -52,8 +52,8 @@ let AuthController = class AuthController {
         const user = req.user;
         return { id: user.id, username: user.adminid, role: user.role };
     }
-    getAdminData(res) {
-        return { message: 'Admin Data : ' + res };
+    getAdminData() {
+        return { message: 'Admin Data' };
     }
 };
 exports.AuthController = AuthController;
@@ -127,9 +127,8 @@ __decorate([
     (0, roles_decorator_1.Roles)('admin'),
     (0, swagger_1.ApiBearerAuth)('access-token'),
     (0, swagger_1.ApiResponse)({ status: 200, description: 'Admin data retrived successfully' }),
-    __param(0, (0, common_1.Res)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Response]),
+    __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], AuthController.prototype, "getAdminData", null);
 exports.AuthController = AuthController = __decorate([

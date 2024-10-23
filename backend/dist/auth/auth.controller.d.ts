@@ -26,7 +26,7 @@ export declare class AuthController {
         username: string;
         role: string;
     };
-    getAdminData(res: Response): {
+    getAdminData(): {
         message: string;
     };
 }
