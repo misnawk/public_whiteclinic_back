@@ -5,6 +5,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { EngineerInfoModule } from './engineer-info/engineer-info.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
+import { RefreshTokenModule } from './refresh_token/refresh_token.module';
+import { AdminModule } from './admin/admin.module';
 
 @Module({
   imports: [
@@ -27,6 +29,8 @@ import { join } from 'path';
 
     OrderInfoModule,
     EngineerInfoModule,
+    RefreshTokenModule,
+    AdminModule,
   ],
   controllers: [AppController],
   providers: [],
