@@ -36,7 +36,7 @@ __decorate([
     __metadata("design:type", Number)
 ], Admin.prototype, "tokenVersion", void 0);
 __decorate([
-    (0, typeorm_1.OneToOne)(() => refresh_token_entity_1.RefreshToken, (RefreshToken) => RefreshToken.admin),
+    (0, typeorm_1.OneToMany)(() => refresh_token_entity_1.RefreshToken, (refreshToken) => refreshToken.admin),
     __metadata("design:type", Array)
 ], Admin.prototype, "refreshTokens", void 0);
 exports.Admin = Admin = __decorate([

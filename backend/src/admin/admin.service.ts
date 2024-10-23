@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Admin } from './entities/admin.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
-import { bcrypt } from 'bcrypt';
+import * as bcrypt from 'bcrypt';
 @Injectable()
 export class AdminService {
   constructor(
@@ -17,6 +17,10 @@ export class AdminService {
     role: string = 'admin',
   ): Promise<Admin> {
     const hashedPassword = await bcrypt.hash(adminpw, 10);
+    console.log(
+      'hashedPassword : ' + hashedPassword,
+      'inputPassword : ' + adminpw,
+    );
     const admin = this.adminRepository.create({
       adminid,
       adminpw: hashedPassword,

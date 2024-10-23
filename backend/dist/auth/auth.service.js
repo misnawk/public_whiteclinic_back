@@ -22,9 +22,9 @@ let AuthService = class AuthService {
         this.refreshTokenService = refreshTokenService;
         this.jwtService = jwtService;
     }
-    async signIn(adminID, pass) {
+    async signIn(adminID, adminPW) {
         const user = await this.adminService.findOne(adminID);
-        if (!user || !(await bcrypt.compare(pass, user.adminpw))) {
+        if (!user || !(await bcrypt.compare(adminPW, user.adminpw))) {
             throw new common_1.UnauthorizedException('인증되지 않은 사용자');
         }
         await this.logoutAll(user.id);

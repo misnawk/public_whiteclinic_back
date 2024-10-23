@@ -12,9 +12,6 @@ async function bootstrap() {
 
   const port = 8000;
 
-  app.enableCors({ origin: true, credentials: true });
-  app.useGlobalFilters(new HttpErrorFilter());
-  // 전역 파이프 설정
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true, // DTO에 정의되지 않은 속성 제거
@@ -22,6 +19,14 @@ async function bootstrap() {
       transform: true, // 자동 변환
     }),
   );
+
+  app.enableCors({
+    origin: ['http://localhost:8000'],
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+  });
+  app.useGlobalFilters(new HttpErrorFilter());
+  // 전역 파이프 설정
 
   setupSwagger(app);
 

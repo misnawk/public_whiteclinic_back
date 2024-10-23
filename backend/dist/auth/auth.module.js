@@ -18,7 +18,6 @@ const config_1 = require("@nestjs/config");
 const fs = require("fs");
 const path = require("path");
 const jwt_strategy_1 = require("./jwt.strategy");
-const admin_service_1 = require("../admin/admin.service");
 let AuthModule = class AuthModule {
 };
 exports.AuthModule = AuthModule;
@@ -42,7 +41,7 @@ exports.AuthModule = AuthModule = __decorate([
             }),
         ],
         controllers: [auth_controller_1.AuthController],
-        providers: [auth_service_1.AuthService, jwt_strategy_1.JwtStrategy, admin_service_1.AdminService, jwt_1.JwtService],
+        providers: [auth_service_1.AuthService, jwt_strategy_1.JwtStrategy],
         exports: [jwt_1.JwtModule],
     })
 ], AuthModule);

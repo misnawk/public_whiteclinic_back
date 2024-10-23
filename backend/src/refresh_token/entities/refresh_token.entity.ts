@@ -2,10 +2,12 @@ import { Admin } from 'src/admin/entities/admin.entity';
 import {
   Column,
   CreateDateColumn,
-  OneToOne,
+  Entity,
+  ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
+@Entity()
 export class RefreshToken {
   @PrimaryGeneratedColumn()
   id: number;
@@ -19,7 +21,7 @@ export class RefreshToken {
   @Column()
   expiresAt: Date;
 
-  @OneToOne(() => Admin, (admin) => admin.refreshTokens, {
+  @ManyToOne(() => Admin, (admin) => admin.refreshTokens, {
     onDelete: 'CASCADE',
   })
   admin: Admin;

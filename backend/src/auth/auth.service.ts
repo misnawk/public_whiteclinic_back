@@ -17,11 +17,11 @@ export class AuthService {
   // 로그인 : Access Token과 Refresh Token 발급
   async signIn(
     adminID: string,
-    pass: string,
+    adminPW: string,
   ): Promise<{ access_token: string; refresh_token: string }> {
     const user = await this.adminService.findOne(adminID);
 
-    if (!user || !(await bcrypt.compare(pass, user.adminpw))) {
+    if (!user || !(await bcrypt.compare(adminPW, user.adminpw))) {
       throw new UnauthorizedException('인증되지 않은 사용자');
     }
 

@@ -10,13 +10,17 @@ async function bootstrap() {
     (0, dotenv_1.config)();
     const app = await core_1.NestFactory.create(app_module_1.AppModule);
     const port = 8000;
-    app.enableCors({ origin: true, credentials: true });
-    app.useGlobalFilters(new HttpErrorFilter_1.HttpErrorFilter());
     app.useGlobalPipes(new common_1.ValidationPipe({
         whitelist: true,
         forbidNonWhitelisted: true,
         transform: true,
     }));
+    app.enableCors({
+        origin: ['http://localhost:8000'],
+        methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+        credentials: true,
+    });
+    app.useGlobalFilters(new HttpErrorFilter_1.HttpErrorFilter());
     (0, setupSwagger_1.setupSwagger)(app);
     await app.listen(port);
     console.log(`Server is running on port:${port}!`);

@@ -7,7 +7,7 @@ export declare class AuthService {
     private readonly refreshTokenService;
     private readonly jwtService;
     constructor(adminService: AdminService, refreshTokenService: RefreshTokenService, jwtService: JwtService);
-    signIn(adminID: string, pass: string): Promise<{
+    signIn(adminID: string, adminPW: string): Promise<{
         access_token: string;
         refresh_token: string;
     }>;

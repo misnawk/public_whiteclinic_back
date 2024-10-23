@@ -17,13 +17,14 @@ const common_1 = require("@nestjs/common");
 const admin_entity_1 = require("./entities/admin.entity");
 const typeorm_1 = require("typeorm");
 const typeorm_2 = require("@nestjs/typeorm");
-const bcrypt_1 = require("bcrypt");
+const bcrypt = require("bcrypt");
 let AdminService = class AdminService {
     constructor(adminRepository) {
         this.adminRepository = adminRepository;
     }
     async createAdmin(adminid, adminpw, role = 'admin') {
-        const hashedPassword = await bcrypt_1.bcrypt.hash(adminpw, 10);
+        const hashedPassword = await bcrypt.hash(adminpw, 10);
+        console.log('hashedPassword : ' + hashedPassword, 'inputPassword : ' + adminpw);
         const admin = this.adminRepository.create({
             adminid,
             adminpw: hashedPassword,

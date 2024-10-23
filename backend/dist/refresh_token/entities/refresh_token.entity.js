@@ -12,8 +12,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.RefreshToken = void 0;
 const admin_entity_1 = require("../../admin/entities/admin.entity");
 const typeorm_1 = require("typeorm");
-class RefreshToken {
-}
+let RefreshToken = class RefreshToken {
+};
 exports.RefreshToken = RefreshToken;
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
@@ -32,9 +32,12 @@ __decorate([
     __metadata("design:type", Date)
 ], RefreshToken.prototype, "expiresAt", void 0);
 __decorate([
-    (0, typeorm_1.OneToOne)(() => admin_entity_1.Admin, (admin) => admin.refreshTokens, {
+    (0, typeorm_1.ManyToOne)(() => admin_entity_1.Admin, (admin) => admin.refreshTokens, {
         onDelete: 'CASCADE',
     }),
     __metadata("design:type", admin_entity_1.Admin)
 ], RefreshToken.prototype, "admin", void 0);
+exports.RefreshToken = RefreshToken = __decorate([
+    (0, typeorm_1.Entity)()
+], RefreshToken);
 //# sourceMappingURL=refresh_token.entity.js.map

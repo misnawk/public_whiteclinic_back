@@ -1,5 +1,5 @@
 import { RefreshToken } from 'src/refresh_token/entities/refresh_token.entity';
-import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class Admin {
@@ -18,6 +18,6 @@ export class Admin {
   @Column({ default: 0 })
   tokenVersion: number; // Access Token 관리
 
-  @OneToOne(() => RefreshToken, (RefreshToken) => RefreshToken.admin)
+  @OneToMany(() => RefreshToken, (refreshToken) => refreshToken.admin)
   refreshTokens: RefreshToken[];
 }

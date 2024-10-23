@@ -94,7 +94,7 @@ export class AuthController {
   @Roles('admin')
   @ApiBearerAuth('access-token')
   @ApiResponse({ status: 200, description: 'Admin data retrived successfully' })
-  getAdminData(@Res() res: Response) {
-    return { message: 'Admin Data : ' + res };
+  getAdminData() {
+    return { message: 'Admin Data' };
   }
 }
