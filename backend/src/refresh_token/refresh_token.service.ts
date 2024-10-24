@@ -30,10 +30,16 @@ export class RefreshTokenService {
 
   // Refresh Token 검증
   async findByToken(token: string): Promise<RefreshToken | undefined> {
-    return this.refreshTokenRepository.findOne({
+    const RefreshResult = this.refreshTokenRepository.findOne({
       where: { token },
       relations: ['admin'],
     });
+    console.log(
+      'RefreshResult Token 검증(로그아웃) : ',
+      (await RefreshResult).token,
+    );
+    console.log((await RefreshResult).admin);
+    return RefreshResult;
   }
 
   // Refresh Token 제거 (로그아웃)

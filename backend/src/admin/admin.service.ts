@@ -31,10 +31,18 @@ export class AdminService {
 
   // 아이디와 일치하는 리프레시 토큰을 가진 회원정보 찾기
   async findOne(adminid: string): Promise<Admin | undefined> {
-    return this.adminRepository.findOne({
+    const admin = this.adminRepository.findOne({
       where: { adminid },
       relations: ['refreshTokens'],
     });
+    if (admin) {
+      console.log('refreshTokensResult :', (await admin).refreshTokens);
+
+      console.log('adminID', (await admin).adminid);
+      console.log('adminPW', (await admin).adminpw);
+    }
+
+    return admin;
   }
 
   // tokenVersion 증가 함수

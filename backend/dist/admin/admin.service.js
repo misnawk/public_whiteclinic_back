@@ -33,10 +33,16 @@ let AdminService = class AdminService {
         return this.adminRepository.save(admin);
     }
     async findOne(adminid) {
-        return this.adminRepository.findOne({
+        const admin = this.adminRepository.findOne({
             where: { adminid },
             relations: ['refreshTokens'],
         });
+        if (admin) {
+            console.log('refreshTokensResult :', (await admin).refreshTokens);
+            console.log('adminID', (await admin).adminid);
+            console.log('adminPW', (await admin).adminpw);
+        }
+        return admin;
     }
     async incrementTokenVersion(id) {
         await this.adminRepository.increment({ id }, 'tokenVersion', 1);
