@@ -50,6 +50,9 @@ importers:
       class-validator:
         specifier: ^0.14.1
         version: 0.14.1
+      dotenv:
+        specifier: ^16.4.5
+        version: 16.4.5
       mysql2:
         specifier: ^3.11.3
         version: 3.11.3
@@ -4606,6 +4609,7 @@ snapshots:
       bcrypt: 5.1.1
       class-transformer: 0.5.1
       class-validator: 0.14.1
+      dotenv: 16.4.5
       mysql2: 3.11.3
       passport: 0.7.0
       passport-jwt: 4.0.1
