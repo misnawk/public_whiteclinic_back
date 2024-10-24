@@ -20,7 +20,10 @@ async function bootstrap() {
   );
 
   app.enableCors({
-    origin: ['http://localhost:8000'],
+    origin: [
+      'http://localhost:8000',
+      'https://vercel.com/deployproject/whiteclinic-server/CkhnbgnrRERAJDtiiqWf4HNkq59Y',
+    ],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
   });
