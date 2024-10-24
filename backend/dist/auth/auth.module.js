@@ -15,10 +15,7 @@ const refresh_token_module_1 = require("../refresh_token/refresh_token.module");
 const passport_1 = require("@nestjs/passport");
 const jwt_1 = require("@nestjs/jwt");
 const config_1 = require("@nestjs/config");
-const fs = require("fs");
-const path = require("path");
 const jwt_strategy_1 = require("./jwt.strategy");
-const URLS_1 = require("../util/URLS");
 console.log(process.env.PRIVATE_KEY_PATH);
 console.log(process.env.PUBLIC_KEY_PATH);
 let AuthModule = class AuthModule {
@@ -33,8 +30,8 @@ exports.AuthModule = AuthModule = __decorate([
             jwt_1.JwtModule.registerAsync({
                 imports: [config_1.ConfigModule],
                 useFactory: async (configService) => ({
-                    privateKey: fs.readFileSync(path.resolve(configService.get(URLS_1.PRIVATE_KEY_PATH)), 'utf8'),
-                    publicKey: fs.readFileSync(path.resolve(configService.get(URLS_1.PUBLIC_KEY_PATH)), 'utf8'),
+                    privateKey: configService.get('PRIVATE_KEY'),
+                    publicKey: configService.get('PUBLIC_KEY'),
                     signOptions: {
                         algorithm: 'RS256',
                         expiresIn: '5m',
