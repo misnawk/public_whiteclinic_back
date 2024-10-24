@@ -10,11 +10,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RegisterAuthDTO = void 0;
-const mapped_types_1 = require("@nestjs/mapped-types");
 const create_auth_dto_1 = require("./create-auth.dto");
 const swagger_1 = require("@nestjs/swagger");
 const class_validator_1 = require("class-validator");
-class RegisterAuthDTO extends (0, mapped_types_1.PartialType)(create_auth_dto_1.CreateAuthDto) {
+class RegisterAuthDTO extends (0, swagger_1.PartialType)(create_auth_dto_1.CreateAuthDto) {
 }
 exports.RegisterAuthDTO = RegisterAuthDTO;
 __decorate([
