@@ -4,12 +4,13 @@ import { setupSwagger } from './util/setupSwagger';
 import { HttpErrorFilter } from './util/HttpErrorFilter';
 import { config } from 'dotenv';
 import { ValidationPipe } from '@nestjs/common';
+import { LOCAL_URL, SERVER_PORT, SERVER_URL } from './util/URLS';
 
 async function bootstrap() {
   config(); // .env 파일 로드
 
   const app = await NestFactory.create(AppModule);
-  const port = 8000;
+  const port = SERVER_PORT;
 
   app.useGlobalPipes(
     new ValidationPipe({
@@ -20,10 +21,7 @@ async function bootstrap() {
   );
 
   app.enableCors({
-    origin: [
-      'http://localhost:8000',
-      'https://vercel.com/deployproject/whiteclinic-server/CkhnbgnrRERAJDtiiqWf4HNkq59Y',
-    ],
+    origin: LOCAL_URL || SERVER_URL,
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
   });

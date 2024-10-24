@@ -6,17 +6,18 @@ const setupSwagger_1 = require("./util/setupSwagger");
 const HttpErrorFilter_1 = require("./util/HttpErrorFilter");
 const dotenv_1 = require("dotenv");
 const common_1 = require("@nestjs/common");
+const URLS_1 = require("./util/URLS");
 async function bootstrap() {
     (0, dotenv_1.config)();
     const app = await core_1.NestFactory.create(app_module_1.AppModule);
-    const port = 8000;
+    const port = URLS_1.SERVER_PORT;
     app.useGlobalPipes(new common_1.ValidationPipe({
         whitelist: true,
         forbidNonWhitelisted: true,
         transform: true,
     }));
     app.enableCors({
-        origin: ['http://localhost:8000'],
+        origin: URLS_1.LOCAL_URL || URLS_1.SERVER_URL,
         methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
         credentials: true,
     });
