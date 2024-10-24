@@ -9,7 +9,6 @@ async function bootstrap() {
   config(); // .env 파일 로드
 
   const app = await NestFactory.create(AppModule);
-
   const port = 8000;
 
   app.useGlobalPipes(
