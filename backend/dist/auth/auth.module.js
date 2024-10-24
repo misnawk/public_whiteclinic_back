@@ -16,8 +16,6 @@ const passport_1 = require("@nestjs/passport");
 const jwt_1 = require("@nestjs/jwt");
 const config_1 = require("@nestjs/config");
 const jwt_strategy_1 = require("./jwt.strategy");
-console.log(process.env.PRIVATE_KEY_PATH);
-console.log(process.env.PUBLIC_KEY_PATH);
 let AuthModule = class AuthModule {
 };
 exports.AuthModule = AuthModule;
@@ -30,8 +28,12 @@ exports.AuthModule = AuthModule = __decorate([
             jwt_1.JwtModule.registerAsync({
                 imports: [config_1.ConfigModule],
                 useFactory: async (configService) => ({
-                    privateKey: configService.get('PRIVATE_KEY'),
-                    publicKey: configService.get('PUBLIC_KEY'),
+                    privateKey: configService
+                        .get('PRIVATE_KEY')
+                        .replace(/\\n/g, '\n'),
+                    publicKey: configService
+                        .get('PUBLIC_KEY')
+                        .replace(/\\n/g, '\n'),
                     signOptions: {
                         algorithm: 'RS256',
                         expiresIn: '5m',
