@@ -36,7 +36,7 @@ exports.AppModule = AppModule = __decorate([
                 type: 'postgres',
                 host: 'ep-cold-band-a71ed1zj-pooler.ap-southeast-2.aws.neon.tech',
                 url: 'postgres://default:hNOtdfu8sWy3@ep-cold-band-a71ed1zj-pooler.ap-southeast-2.aws.neon.tech:5432/verceldb?sslmode=require',
-                ssl: false,
+                ssl: { rejectUnauthorized: false },
                 username: 'default',
                 password: 'hNOtdfu8sWy3',
                 database: 'verceldb',
