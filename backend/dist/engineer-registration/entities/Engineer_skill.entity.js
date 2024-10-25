@@ -9,29 +9,34 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.EngineerCommissionRates = void 0;
+exports.EngineerSkill = void 0;
+const engineer_info_entity_1 = require("../../engineer-info/entities/engineer-info.entity");
 const typeorm_1 = require("typeorm");
-const engineer_info_entity_1 = require("./engineer-info.entity");
-let EngineerCommissionRates = class EngineerCommissionRates {
+const skill_entity_1 = require("./skill.entity");
+let EngineerSkill = class EngineerSkill {
 };
-exports.EngineerCommissionRates = EngineerCommissionRates;
+exports.EngineerSkill = EngineerSkill;
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)
-], EngineerCommissionRates.prototype, "id", void 0);
+], EngineerSkill.prototype, "id", void 0);
 __decorate([
     (0, typeorm_1.Column)({ name: 'engineer_id' }),
     __metadata("design:type", Number)
-], EngineerCommissionRates.prototype, "engineerId", void 0);
+], EngineerSkill.prototype, "engineerId", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ name: 'rate_id' }),
+    (0, typeorm_1.Column)({ name: 'skill_id' }),
     __metadata("design:type", Number)
-], EngineerCommissionRates.prototype, "rateId", void 0);
+], EngineerSkill.prototype, "skillId", void 0);
 __decorate([
-    (0, typeorm_1.JoinColumn)({ name: 'EngineerId' }),
+    (0, typeorm_1.JoinColumn)({ name: 'engineer_id' }),
     __metadata("design:type", engineer_info_entity_1.Engineer)
-], EngineerCommissionRates.prototype, "Engineer", void 0);
-exports.EngineerCommissionRates = EngineerCommissionRates = __decorate([
-    (0, typeorm_1.Entity)('engineer_commissionrates')
-], EngineerCommissionRates);
-//# sourceMappingURL=engineer-commissionRates.entity.js.map
+], EngineerSkill.prototype, "engineer", void 0);
+__decorate([
+    (0, typeorm_1.JoinColumn)({ name: 'skill_id' }),
+    __metadata("design:type", skill_entity_1.Skill)
+], EngineerSkill.prototype, "skill", void 0);
+exports.EngineerSkill = EngineerSkill = __decorate([
+    (0, typeorm_1.Entity)('engineer_skill')
+], EngineerSkill);
+//# sourceMappingURL=Engineer_skill.entity.js.map

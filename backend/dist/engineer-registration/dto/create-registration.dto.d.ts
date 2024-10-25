@@ -6,6 +6,6 @@ export declare class CreateRegistrationDto {
     remark: string;
     commissionRate: string;
     paymentDay: string;
-    dayOff: string;
+    specialHoliday: string;
     regularHoliday: string;
 }

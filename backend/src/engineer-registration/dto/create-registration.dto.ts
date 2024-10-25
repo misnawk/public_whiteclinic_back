@@ -31,7 +31,7 @@ export class CreateRegistrationDto {
 
   @IsNotEmpty()
   @IsString()
-  dayOff: string; // 휴무등록
+  specialHoliday: string; // 비정기휴무등록
 
   @IsNotEmpty()
   @IsString()

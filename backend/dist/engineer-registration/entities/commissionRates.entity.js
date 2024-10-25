@@ -9,29 +9,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.EngineerCommissionRates = void 0;
+exports.CommissionRates = void 0;
 const typeorm_1 = require("typeorm");
-const engineer_info_entity_1 = require("./engineer-info.entity");
-let EngineerCommissionRates = class EngineerCommissionRates {
+let CommissionRates = class CommissionRates {
 };
-exports.EngineerCommissionRates = EngineerCommissionRates;
+exports.CommissionRates = CommissionRates;
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)
-], EngineerCommissionRates.prototype, "id", void 0);
+], CommissionRates.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ name: 'engineer_id' }),
+    (0, typeorm_1.Column)({
+        type: 'decimal',
+        precision: 5,
+        scale: 2,
+    }),
     __metadata("design:type", Number)
-], EngineerCommissionRates.prototype, "engineerId", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ name: 'rate_id' }),
-    __metadata("design:type", Number)
-], EngineerCommissionRates.prototype, "rateId", void 0);
-__decorate([
-    (0, typeorm_1.JoinColumn)({ name: 'EngineerId' }),
-    __metadata("design:type", engineer_info_entity_1.Engineer)
-], EngineerCommissionRates.prototype, "Engineer", void 0);
-exports.EngineerCommissionRates = EngineerCommissionRates = __decorate([
-    (0, typeorm_1.Entity)('engineer_commissionrates')
-], EngineerCommissionRates);
-//# sourceMappingURL=engineer-commissionRates.entity.js.map
+], CommissionRates.prototype, "rate", void 0);
+exports.CommissionRates = CommissionRates = __decorate([
+    (0, typeorm_1.Entity)('commissionrates')
+], CommissionRates);
+//# sourceMappingURL=commissionRates.entity.js.map

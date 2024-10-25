@@ -39,6 +39,7 @@ import { ConfigModule } from '@nestjs/config';
     RefreshTokenModule,
     AdminModule,
     AuthModule,
+    RegistrationModule,
   ],
   controllers: [AppController],
   providers: [],

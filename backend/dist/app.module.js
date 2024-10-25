@@ -51,6 +51,7 @@ exports.AppModule = AppModule = __decorate([
             refresh_token_module_1.RefreshTokenModule,
             admin_module_1.AdminModule,
             auth_module_1.AuthModule,
+            registration_module_1.RegistrationModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [],
