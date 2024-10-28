@@ -38,7 +38,7 @@ import { ConfigModule } from '@nestjs/config';
     RegistrationModule,
     RefreshTokenModule,
     AdminModule,
-    AuthModule,
+    // AuthModule,
   ],
   controllers: [AppController],
   providers: [],

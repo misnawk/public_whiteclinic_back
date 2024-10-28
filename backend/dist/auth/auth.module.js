@@ -26,19 +26,19 @@ exports.AuthModule = AuthModule = __decorate([
             refresh_token_module_1.RefreshTokenModule,
             passport_1.PassportModule,
             jwt_1.JwtModule.registerAsync({
-                imports: [config_1.ConfigModule],
-                useFactory: async (configService) => ({
-                    privateKey: configService
-                        .get('PRIVATE_KEY')
-                        .replace(/\\n/g, '\n'),
-                    publicKey: configService
-                        .get('PUBLIC_KEY')
-                        .replace(/\\n/g, '\n'),
-                    signOptions: {
-                        algorithm: 'RS256',
-                        expiresIn: '5m',
-                    },
-                }),
+                imports: [config_1.ConfigModule.forRoot({ isGlobal: true })],
+                useFactory: async (configService) => {
+                    console.log('PRIVATE_KEY:', configService.get('PRIVATE_KEY'));
+                    console.log('PUBLIC_KEY:', configService.get('PUBLIC_KEY'));
+                    return {
+                        privateKey: configService.get('PRIVATE_KEY'),
+                        publicKey: configService.get('PUBLIC_KEY'),
+                        signOptions: {
+                            algorithm: 'RS256',
+                            expiresIn: '5m',
+                        },
+                    };
+                },
                 inject: [config_1.ConfigService],
             }),
         ],

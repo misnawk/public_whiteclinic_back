@@ -15,14 +15,18 @@ import { JwtStrategy } from './jwt.strategy';
     PassportModule,
     JwtModule.registerAsync({
       imports: [ConfigModule],
-      useFactory: async (configService: ConfigService) => ({
-        privateKey: configService.get<string>('PRIVATE_KEY'),
-        publicKey: configService.get<string>('PUBLIC_KEY'),
-        signOptions: {
-          algorithm: 'RS256',
-          expiresIn: '5m',
-        },
-      }),
+      useFactory: async (configService: ConfigService) => {
+        console.log('PRIVATE_KEY:', configService.get<string>('PRIVATE_KEY'));
+        console.log('PUBLIC_KEY:', configService.get<string>('PUBLIC_KEY'));
+        return {
+          privateKey: configService.get<string>('PRIVATE_KEY'),
+          publicKey: configService.get<string>('PUBLIC_KEY'),
+          signOptions: {
+            algorithm: 'RS256',
+            expiresIn: '5m',
+          },
+        };
+      },
       inject: [ConfigService],
     }),
   ],
