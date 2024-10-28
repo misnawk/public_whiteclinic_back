@@ -5,7 +5,6 @@ import { AdminModule } from 'src/admin/admin.module';
 import { RefreshTokenModule } from 'src/refresh_token/refresh_token.module';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
-import { ConfigModule, ConfigService } from '@nestjs/config';
 import { JwtStrategy } from './jwt.strategy';
 
 @Module({
@@ -14,24 +13,21 @@ import { JwtStrategy } from './jwt.strategy';
     RefreshTokenModule,
     PassportModule,
     JwtModule.registerAsync({
-      imports: [ConfigModule],
-      useFactory: async (configService: ConfigService) => {
-        const publicKey = process.env.PUBLIC_KEY_PATH;
-        const privateKey = process.env.PRIVATE_KEY_PATH;
+      useFactory: async () => {
+        const publicKey = process.env.PUBLIC_KEY;
+        const privateKey = process.env.PRIVATE_KEY;
         console.log('PRIVATE_KEY:', privateKey);
         console.log('PUBLIC_KEY:', publicKey);
-        configService.get<string>('PUBLIC_KEY');
-        configService.get<string>('PRIVATE_KEY');
+
         return {
-          privateKey,
-          publicKey,
+          privateKey: privateKey,
+          publicKey: publicKey,
           signOptions: {
             algorithm: 'RS256',
             expiresIn: '5m',
           },
         };
       },
-      inject: [ConfigService],
     }),
   ],
   controllers: [AuthController],
