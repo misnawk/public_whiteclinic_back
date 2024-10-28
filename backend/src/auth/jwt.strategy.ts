@@ -9,10 +9,7 @@ import { Admin } from 'src/admin/entities/admin.entity';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
-  constructor(
-    private readonly adminService: AdminService,
-    configService: ConfigService,
-  ) {
+  constructor(private readonly adminService: AdminService) {
     super({
       // JWT를 요청 헤더에서 추출
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
@@ -21,10 +18,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
       ignoreExpiration: false,
 
       // Private key를 Public key 경로에서 가져옴
-      secretOrKey: fs.readFileSync(
-        path.resolve(configService.get<string>('PUBLIC_KEY_PATH')),
-        'utf8',
-      ),
+      secretOrKey: process.env.PUBLIC_KEY,
 
       // RSA256 알고리즘 사용하여 JWT 검증
       algorithms: ['RS256'],
