@@ -16,10 +16,11 @@ import { JwtStrategy } from './jwt.strategy';
     JwtModule.registerAsync({
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => {
-        console.log('PRIVATE_KEY:', configService.get<string>('PRIVATE_KEY'));
-        console.log('PUBLIC_KEY:', configService.get<string>('PUBLIC_KEY'));
-        const privateKey = process.env.PRIVATE_KEY;
         const publicKey = process.env.PUBLIC_KEY;
+        const privateKey = process.env.PRIVATE_KEY;
+        console.log('PRIVATE_KEY:', privateKey);
+        console.log('PUBLIC_KEY:', publicKey);
+        configService.get<string>('PUBLIC_KEY');
         return {
           privateKey: privateKey,
           publicKey: publicKey,
