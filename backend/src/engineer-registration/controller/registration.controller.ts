@@ -1,16 +1,6 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-  HttpStatus,
-} from '@nestjs/common';
+import { Controller, Get, Post, Body } from '@nestjs/common';
 import { RegistrationService } from '../service/registration.service';
 import { CreateRegistrationDto } from '../dto/create-registration.dto';
-
 
 @Controller('registration')
 export class RegistrationController {

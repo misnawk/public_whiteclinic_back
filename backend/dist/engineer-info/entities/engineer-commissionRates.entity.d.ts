@@ -1,5 +1,7 @@
+import { Engineer } from './engineer-info.entity';
 export declare class EngineerCommissionRates {
     id: number;
-    EngineerId: number;
+    engineerId: number;
     rateId: number;
+    Engineer: Engineer;
 }

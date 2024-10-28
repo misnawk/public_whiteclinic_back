@@ -26,6 +26,7 @@ exports.AuthModule = AuthModule = __decorate([
             refresh_token_module_1.RefreshTokenModule,
             passport_1.PassportModule,
             jwt_1.JwtModule.registerAsync({
+<<<<<<< HEAD
                 imports: [config_1.ConfigModule.forRoot({ isGlobal: true })],
                 useFactory: async (configService) => {
                     console.log('PRIVATE_KEY:', configService.get('PRIVATE_KEY'));
@@ -39,6 +40,17 @@ exports.AuthModule = AuthModule = __decorate([
                         },
                     };
                 },
+=======
+                imports: [config_1.ConfigModule],
+                useFactory: async (configService) => ({
+                    privateKey: configService.get('PRIVATE_KEY'),
+                    publicKey: configService.get('PUBLIC_KEY'),
+                    signOptions: {
+                        algorithm: 'RS256',
+                        expiresIn: '5m',
+                    },
+                }),
+>>>>>>> 58a6ecadc27c92ca4cd3ffcb64aece4db0f37edf
                 inject: [config_1.ConfigService],
             }),
         ],

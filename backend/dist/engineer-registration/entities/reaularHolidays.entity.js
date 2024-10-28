@@ -9,29 +9,34 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.EngineerCommissionRates = void 0;
+exports.RegularHolidays = void 0;
+const engineer_info_entity_1 = require("../../engineer-info/entities/engineer-info.entity");
 const typeorm_1 = require("typeorm");
-const engineer_info_entity_1 = require("./engineer-info.entity");
-let EngineerCommissionRates = class EngineerCommissionRates {
+const weekDay_entity_1 = require("./weekDay.entity");
+let RegularHolidays = class RegularHolidays {
 };
-exports.EngineerCommissionRates = EngineerCommissionRates;
+exports.RegularHolidays = RegularHolidays;
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)
-], EngineerCommissionRates.prototype, "id", void 0);
+], RegularHolidays.prototype, "id", void 0);
 __decorate([
     (0, typeorm_1.Column)({ name: 'engineer_id' }),
     __metadata("design:type", Number)
-], EngineerCommissionRates.prototype, "engineerId", void 0);
+], RegularHolidays.prototype, "engineerId", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ name: 'rate_id' }),
+    (0, typeorm_1.Column)({ name: 'weekday_id' }),
     __metadata("design:type", Number)
-], EngineerCommissionRates.prototype, "rateId", void 0);
+], RegularHolidays.prototype, "weekdayId", void 0);
 __decorate([
-    (0, typeorm_1.JoinColumn)({ name: 'EngineerId' }),
+    (0, typeorm_1.JoinColumn)({ name: 'enginerId' }),
     __metadata("design:type", engineer_info_entity_1.Engineer)
-], EngineerCommissionRates.prototype, "Engineer", void 0);
-exports.EngineerCommissionRates = EngineerCommissionRates = __decorate([
-    (0, typeorm_1.Entity)('engineer_commissionrates')
-], EngineerCommissionRates);
-//# sourceMappingURL=engineer-commissionRates.entity.js.map
+], RegularHolidays.prototype, "engineer", void 0);
+__decorate([
+    (0, typeorm_1.JoinColumn)({ name: 'weekdayId' }),
+    __metadata("design:type", weekDay_entity_1.WeekDays)
+], RegularHolidays.prototype, "weekday", void 0);
+exports.RegularHolidays = RegularHolidays = __decorate([
+    (0, typeorm_1.Entity)('regularholidays')
+], RegularHolidays);
+//# sourceMappingURL=reaularHolidays.entity.js.map

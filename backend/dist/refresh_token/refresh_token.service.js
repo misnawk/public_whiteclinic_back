@@ -31,10 +31,13 @@ let RefreshTokenService = class RefreshTokenService {
         return this.refreshTokenRepository.save(refreshToken);
     }
     async findByToken(token) {
-        return this.refreshTokenRepository.findOne({
+        const RefreshResult = this.refreshTokenRepository.findOne({
             where: { token },
             relations: ['admin'],
         });
+        console.log('RefreshResult Token 검증(로그아웃) : ', (await RefreshResult).token);
+        console.log((await RefreshResult).admin);
+        return RefreshResult;
     }
     async removeRefreshToken(token) {
         await this.refreshTokenRepository.delete({ token });
