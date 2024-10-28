@@ -16,8 +16,6 @@ import { JwtStrategy } from './jwt.strategy';
       useFactory: async () => {
         const publicKey = process.env.PUBLIC_KEY;
         const privateKey = process.env.PRIVATE_KEY;
-        console.log('PRIVATE_KEY:', privateKey);
-        console.log('PUBLIC_KEY:', publicKey);
 
         return {
           privateKey: privateKey,
