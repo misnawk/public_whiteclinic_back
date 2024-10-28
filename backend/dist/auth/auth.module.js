@@ -28,14 +28,15 @@ exports.AuthModule = AuthModule = __decorate([
             jwt_1.JwtModule.registerAsync({
                 imports: [config_1.ConfigModule],
                 useFactory: async (configService) => {
-                    const publicKey = process.env.PUBLIC_KEY;
-                    const privateKey = process.env.PRIVATE_KEY;
+                    const publicKey = process.env.PUBLIC_KEY_PATH;
+                    const privateKey = process.env.PRIVATE_KEY_PATH;
                     console.log('PRIVATE_KEY:', privateKey);
                     console.log('PUBLIC_KEY:', publicKey);
                     configService.get('PUBLIC_KEY');
+                    configService.get('PRIVATE_KEY');
                     return {
-                        privateKey: privateKey,
-                        publicKey: publicKey,
+                        privateKey,
+                        publicKey,
                         signOptions: {
                             algorithm: 'RS256',
                             expiresIn: '5m',

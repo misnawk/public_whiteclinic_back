@@ -16,14 +16,15 @@ import { JwtStrategy } from './jwt.strategy';
     JwtModule.registerAsync({
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => {
-        const publicKey = process.env.PUBLIC_KEY;
-        const privateKey = process.env.PRIVATE_KEY;
+        const publicKey = process.env.PUBLIC_KEY_PATH;
+        const privateKey = process.env.PRIVATE_KEY_PATH;
         console.log('PRIVATE_KEY:', privateKey);
         console.log('PUBLIC_KEY:', publicKey);
         configService.get<string>('PUBLIC_KEY');
+        configService.get<string>('PRIVATE_KEY');
         return {
-          privateKey: privateKey,
-          publicKey: publicKey,
+          privateKey,
+          publicKey,
           signOptions: {
             algorithm: 'RS256',
             expiresIn: '5m',
