@@ -1,6 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { CreateEngineerInfoDto } from '../dto/create-engineer-info.dto';
-import { UpdateEngineerInfoDto } from '../dto/update-engineer-info.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Engineer } from '../entities/engineer-info.entity';
 import { EngineerDailyearnings } from '../entities/engineer-dailyearnings.entity';
@@ -12,16 +10,16 @@ import { Repository } from 'typeorm';
 export class EngineerInfoService {
   constructor(
     @InjectRepository(Engineer)
-    private EngineerRepository: Repository<Engineer>,
+    private readonly EngineerRepository: Repository<Engineer>,
 
     @InjectRepository(EngineerDailyearnings)
-    private engineerDailyearningsReopsitory: Repository<EngineerDailyearnings>,
+    private readonly engineerDailyearningsReopsitory: Repository<EngineerDailyearnings>,
 
     @InjectRepository(EngineerPayDay)
-    private EngineerPayDayRepository: Repository<EngineerPayDay>,
+    private readonly EngineerPayDayRepository: Repository<EngineerPayDay>,
 
     @InjectRepository(EngineerCommissionRates)
-    private EngineerCommissionRatesRepository: Repository<EngineerCommissionRates>,
+    private readonly EngineerCommissionRatesRepository: Repository<EngineerCommissionRates>,
   ) {}
 
   async engineer(): Promise<Engineer[]> {
