@@ -9,6 +9,7 @@ import { RegistrationModule } from './engineer-registration/registration.module'
 import { RefreshTokenModule } from './refresh_token/refresh_token.module';
 import { AdminModule } from './admin/admin.module';
 import { ConfigModule } from '@nestjs/config';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -37,7 +38,7 @@ import { ConfigModule } from '@nestjs/config';
     RegistrationModule,
     RefreshTokenModule,
     AdminModule,
-    // AuthModule,
+    AuthModule,
     RegistrationModule,
   ],
   controllers: [AppController],

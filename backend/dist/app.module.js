@@ -17,8 +17,8 @@ const path_1 = require("path");
 const registration_module_1 = require("./engineer-registration/registration.module");
 const refresh_token_module_1 = require("./refresh_token/refresh_token.module");
 const admin_module_1 = require("./admin/admin.module");
-const auth_module_1 = require("./auth/auth.module");
 const config_1 = require("@nestjs/config");
+const auth_module_1 = require("./auth/auth.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;

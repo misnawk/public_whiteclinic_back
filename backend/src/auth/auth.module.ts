@@ -18,9 +18,11 @@ import { JwtStrategy } from './jwt.strategy';
       useFactory: async (configService: ConfigService) => {
         console.log('PRIVATE_KEY:', configService.get<string>('PRIVATE_KEY'));
         console.log('PUBLIC_KEY:', configService.get<string>('PUBLIC_KEY'));
+        const privateKey = process.env.PRIVATE_KEY;
+        const publicKey = process.env.PUBLIC_KEY;
         return {
-          privateKey: configService.get<string>('PRIVATE_KEY'),
-          publicKey: configService.get<string>('PUBLIC_KEY'),
+          privateKey: privateKey,
+          publicKey: publicKey,
           signOptions: {
             algorithm: 'RS256',
             expiresIn: '5m',
