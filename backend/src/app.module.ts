@@ -8,7 +8,6 @@ import { join } from 'path';
 import { RegistrationModule } from './engineer-registration/registration.module';
 import { RefreshTokenModule } from './refresh_token/refresh_token.module';
 import { AdminModule } from './admin/admin.module';
-import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
 
 @Module({
