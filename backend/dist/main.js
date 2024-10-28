@@ -11,19 +11,20 @@ async function bootstrap() {
     (0, dotenv_1.config)();
     const app = await core_1.NestFactory.create(app_module_1.AppModule);
     const port = URLS_1.SERVER_PORT;
+    app.useStaticAssets('../public');
     app.useGlobalPipes(new common_1.ValidationPipe({
         whitelist: true,
         forbidNonWhitelisted: true,
         transform: true,
     }));
     app.enableCors({
-        origin: URLS_1.LOCAL_URL || URLS_1.SERVER_URL,
+        origin: URLS_1.SERVER_URL || URLS_1.LOCAL_URL,
         methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
         credentials: true,
     });
     app.useGlobalFilters(new HttpErrorFilter_1.HttpErrorFilter());
     (0, setupSwagger_1.setupSwagger)(app);
-    await app.listen(port);
+    await app.listen(process.env.PORT || port);
     console.log(`Server is running on port:${port}!`);
 }
 bootstrap();

@@ -14,7 +14,6 @@ const admin_module_1 = require("../admin/admin.module");
 const refresh_token_module_1 = require("../refresh_token/refresh_token.module");
 const passport_1 = require("@nestjs/passport");
 const jwt_1 = require("@nestjs/jwt");
-const config_1 = require("@nestjs/config");
 const jwt_strategy_1 = require("./jwt.strategy");
 let AuthModule = class AuthModule {
 };
@@ -26,24 +25,18 @@ exports.AuthModule = AuthModule = __decorate([
             refresh_token_module_1.RefreshTokenModule,
             passport_1.PassportModule,
             jwt_1.JwtModule.registerAsync({
-                imports: [config_1.ConfigModule],
-                useFactory: async (configService) => {
-                    const publicKey = process.env.PUBLIC_KEY_PATH;
-                    const privateKey = process.env.PRIVATE_KEY_PATH;
-                    console.log('PRIVATE_KEY:', privateKey);
-                    console.log('PUBLIC_KEY:', publicKey);
-                    configService.get('PUBLIC_KEY');
-                    configService.get('PRIVATE_KEY');
+                useFactory: async () => {
+                    const publicKey = process.env.PUBLIC_KEY;
+                    const privateKey = process.env.PRIVATE_KEY;
                     return {
-                        privateKey,
-                        publicKey,
+                        privateKey: privateKey,
+                        publicKey: publicKey,
                         signOptions: {
                             algorithm: 'RS256',
                             expiresIn: '5m',
                         },
                     };
                 },
-                inject: [config_1.ConfigService],
             }),
         ],
         controllers: [auth_controller_1.AuthController],
